@@ -14,7 +14,7 @@
         AllowsTransparency="True">
     <Border CornerRadius="12">
         <Border.Background>
-            <ImageBrush ImageSource="D:\C# Assignment\DoAn\QLBH\QLBH\Images\Image_BackGround.jfif"/>
+            <ImageBrush ImageSource="\Images\Image_BackGround.jfif"/>
         </Border.Background>
         <Border CornerRadius="10"
             Opacity="0.95"
@@ -51,7 +51,7 @@
                     </Grid.ColumnDefinitions>
 
 
-                    <Image Source="D:\C# Assignment\DoAn\QLBH\QLBH\Images\image_logo.png"
+                    <Image Source="\Images\image_logo.png"
                            Width="30"
                            Height="30"
                            Grid.Column="0"
@@ -156,7 +156,7 @@
                                         Margin="-10,20,0,0">
                                     <Ellipse>
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="D:\C# Assignment\DoAn\QLBH\QLBH\Images\Image_User.png"/>
+                                            <ImageBrush ImageSource="\Images\Image_User.png"/>
 
                                         </Ellipse.Fill>
                                     </Ellipse>

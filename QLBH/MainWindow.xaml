@@ -128,7 +128,7 @@
                                 Grid.Row="2"
                                 Orientation="Vertical"
                                 Margin="0,35,0,0">
-                    <Image Source="D:\C# Assignment\DoAn\QLBH\QLBH\Images\image_logo.png" Width="100" Height="100"/>
+                    <Image Source="\Images\image_logo.png" Width="100" Height="100"/>
                     <TextBlock FontSize="12" FontWeight="Medium" Foreground="White" Margin="0,50,0,0">Username: </TextBlock>
                     <TextBox x:Name="txtUser"
                              FontSize="13"
