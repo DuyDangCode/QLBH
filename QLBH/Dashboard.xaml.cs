@@ -40,5 +40,10 @@ namespace QLBH
         {
             Application.Current.Shutdown();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
