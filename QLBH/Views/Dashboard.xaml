@@ -170,7 +170,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     
                                     <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"/>
+                                    <TextBlock Text="Trang Chủ" Style="{StaticResource menuButtonText}"/>
                                 </StackPanel>
                             </RadioButton>
 
@@ -179,38 +179,58 @@
                                  Command="{Binding ShowCustomerViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Customers" Style="{StaticResource menuButtonText}"/>
+                                    <TextBlock Text="Khách hàng" Style="{StaticResource menuButtonText}"/>
                                 </StackPanel>
                             </RadioButton>
 
                             <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
+                                 Tag="{StaticResource color3}"
+                                 Command="{Binding ShowCustomerViewCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="CashRegister" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Hóa đơn" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+
+                            <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color4}"
+                                 Command="{Binding ShowCustomerViewCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="CartShopping" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Đơn hàng" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+
+                            <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color5}"
                                  Command="{Binding ShowCustomerViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Customers" Style="{StaticResource menuButtonText}"/>
-                                </StackPanel>
-                            </RadioButton>
-
-
-                            <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
-                                 Command="{Binding ShowCustomerViewCommand}">
-                                <StackPanel Orientation="Horizontal">
-                                    <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Customers" Style="{StaticResource menuButtonText}"/>
+                                    <TextBlock Text="Nhập hàng" Style="{StaticResource menuButtonText}"/>
                                 </StackPanel>
                             </RadioButton>
 
                             <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
+                                 Tag="{StaticResource color6}"
                                  Command="{Binding ShowCustomerViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="Gears" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Setting" Style="{StaticResource menuButtonText}"/>
+                                    <TextBlock Text="Cài đặt" Style="{StaticResource menuButtonText}"/>
                                 </StackPanel>
                             </RadioButton>
 
+                            <Grid Margin="0,50,0,0">
+                                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color7}"
+                                 Command="{Binding ShowCustomerViewCommand}" Height="50" Margin="-5,0,0,0" VerticalAlignment="Top" Checked="btnLogOut_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:IconImage Icon="DoorOpen" Style="{StaticResource menuButtonIcon}"/>
+                                        <TextBlock Text="Đăng xuất" Style="{StaticResource menuButtonText}"/>
+                                    </StackPanel>
+                                </RadioButton>
+                            </Grid>
 
 
                         </StackPanel>
@@ -218,18 +238,25 @@
 
                     <!--Content section-->
                     <Border CornerRadius="0,10,10,0" 
-                            Grid.Column="2">
+                            Grid.Column="1">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
                                 <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
                                 <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
                             </LinearGradientBrush>
                         </Border.Background>
+                        <ContentControl Content=""
+                                        Margin="25">
+                            
+                            
+                        </ContentControl>
                     </Border>
                     
+                    
                 </Grid>
-
-
+                
+                
+                
 
             </Grid>
         </Border>

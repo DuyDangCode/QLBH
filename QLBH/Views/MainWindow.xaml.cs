@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace QLBH
 {
     /// <summary>
@@ -42,13 +43,7 @@ namespace QLBH
             Application.Current.Shutdown();
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            Dashboard dashboard = new Dashboard();
-            dashboard.Left = Application.Current.MainWindow.Left;
-            dashboard.Top = Application.Current.MainWindow.Top;
-            dashboard.Show();
-            this.Close();
-        }
+        private void btnLogin_Click(object sender, RoutedEventArgs e) { }
+
     }
 }

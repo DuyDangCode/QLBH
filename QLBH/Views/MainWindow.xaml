@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLBH"
+        xmlns:viewModel="clr-namespace:QLBH.ViewModels"
+        xmlns:customcontrols="clr-namespace:QLBH.CustomControls"
         mc:Ignorable="d"
         Title="Quan Ly Ban Hang" 
         Height="550" 
@@ -14,6 +16,19 @@
         MouseDown="Window_MouseDown"
         Background="Transparent"
         AllowsTransparency="True">
+
+    <Window.DataContext>
+        <viewModel:LoginViewModel/>
+    </Window.DataContext>
+
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
+
+    <Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>
 
     <Border CornerRadius="12">
         <Border.Background>
@@ -140,24 +155,20 @@
                              BorderThickness="0,0,0,2"
                              Height="28"
                              VerticalAlignment="Center"
-                             Margin="0,5,0,0">
+                             Margin="0,5,0,0"
+                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}">
                         
                     </TextBox>
+                    
                     <TextBlock FontSize="12" FontWeight="Medium" Foreground="White" Margin="0,20,0,0">Password:</TextBlock>
-                    <PasswordBox x:Name="txtPass"
-                             FontSize="13"
-                             FontWeight="Medium"
-                             Background="Transparent"
-                             Foreground="white"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
-                             BorderThickness="0,0,0,2"
+                    <customcontrols:BindablePasswordBox 
                              Height="28"
-                             VerticalAlignment="Center"
+                             Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Margin="0,5,0,0">
-                        
-                    </PasswordBox>
 
+                    </customcontrols:BindablePasswordBox>
+
+                    <TextBlock Text="{Binding ErrorMessage}"  FontSize="12" FontWeight="Medium" Foreground="White" Margin="0,10,0,0" TextWrapping="Wrap"></TextBlock>
 
                     <Button x:Name="btnLogin"
                         
@@ -165,6 +176,7 @@
                         Content="Login"
                         Foreground="White"
                         FontSize="10"
+                        Command="{Binding LoginCommand}"
                         Cursor="Hand"
                         Grid.Column="2" 
                         Margin="0,80,0,0" Click="btnLogin_Click">
@@ -190,6 +202,26 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                    
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="0,15,0,0">
+
+                        <TextBlock Text="Forgot Password?"
+                               Foreground="DarkGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"/>
+
+                        <TextBlock Text="Reset"
+                               Foreground="White"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Cursor="Hand"
+                               Margin="8,0,0,0"/>
+
+                    </StackPanel>
                 </StackPanel>
     
 

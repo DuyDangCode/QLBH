@@ -43,7 +43,15 @@ namespace QLBH
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //ProfileUser pu = new ProfileUser();
+            //pu.Show();
+        }
 
+        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();   
+            mw.Show();
+            this.Close();
         }
     }
 }
