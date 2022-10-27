@@ -53,5 +53,7 @@ namespace QLBH
             mw.Show();
             this.Close();
         }
+
+       
     }
 }

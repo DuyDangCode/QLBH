@@ -5,7 +5,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using QLBH.Models;
-using System.Net;
 using System.Data.SqlClient;
 using System.Data;
 
