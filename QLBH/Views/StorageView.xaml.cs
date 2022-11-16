@@ -26,31 +26,17 @@ namespace QLBH
         {
             InitializeComponent();
             StorageViewModel a = new StorageViewModel();
-            //List<string> l = new List<string>();
-
-            //l.Add(a.produces[0].Name);
-            //l.Add(a.produces[1].Name);
-
-            //List<string> r = new List<string>();
-            //r.Add("xxx");
-            //r.Add("yyy");
+    
             string ImagePath = @"D:\C# Assignment\DoAn\QLBH\QLBH\Images\pd1.jpg";
 
-            string num = "aaaaaaaaaaaaaaaa";
+   
 
-            //listProduct.ItemsSource = a.list;
-            listProduct.ItemsSource = num;
+            listProduct.ItemsSource = a.list;
 
 
         }
 
-        public class Path
-        {
-            string Name = "Hoa Hong";
-            string ImagePath = @"D:\C# Assignment\DoAn\QLBH\QLBH\Images\pd1.jpg";
-            string Price = "200";
-
-        }
+   
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

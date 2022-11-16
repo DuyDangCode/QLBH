@@ -227,7 +227,7 @@
                                  Command="{Binding ShowStorageViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="CartShopping" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Đơn hàng" Style="{StaticResource menuButtonText}"/>
+                                    <TextBlock Text="Kho hàng" Style="{StaticResource menuButtonText}"/>
                                 </StackPanel>
                             </RadioButton>
 
@@ -237,7 +237,7 @@
                                  Command="{Binding ShowCustomerViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Nhập hàng" Style="{StaticResource menuButtonText}"/>
+                                    <TextBlock Text="Người dùng" Style="{StaticResource menuButtonText}"/>
                                 </StackPanel>
                             </RadioButton>
 

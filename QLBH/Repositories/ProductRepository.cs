@@ -29,7 +29,7 @@ namespace QLBH.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "";
+                command.CommandText = "insert into [Product] values ()";
                 
             }
         }
