@@ -39,9 +39,41 @@ namespace QLBH.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<UserModel> GetByAll()
+        public List<UserModel> GetByAll()
         {
-            throw new NotImplementedException();
+            List<UserModel> users = new List<UserModel>();
+
+
+            using (var connection = GetConnection())
+            using (SqlDataAdapter adapter = new SqlDataAdapter())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select * from [User]";
+                adapter.SelectCommand = command;
+                using var SqlReader = command.ExecuteReader();
+                if (SqlReader.HasRows)
+                {
+                    while (SqlReader.Read())
+                    {
+                        UserModel user = new UserModel();
+                        user.Id = Convert.ToString(SqlReader["ID"]);
+                        user.Username = Convert.ToString(SqlReader["USERNAME"]);
+                        user.Password = Convert.ToString(SqlReader["PASSWORD"]);
+
+                        users.Add(user);
+                    }
+
+                }
+                else
+                {
+
+
+                }
+            }
+
+            return users;
         }
 
         public UserModel GetById(int id)

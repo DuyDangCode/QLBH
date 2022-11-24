@@ -12,9 +12,10 @@ namespace QLBH.Models
         ProductModel GetProductByName(string name);
 
         void Add(ProductModel product);
-        void Edit(ProductModel product);
-        void Remove(int id);
+        void Modify(ProductModel product);
+        void Remove(string id);
 
+        List<ProductModel> Find(string id, string name);
         List<ProductModel> GetByAll();
 
 

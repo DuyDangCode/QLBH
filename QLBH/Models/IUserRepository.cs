@@ -15,7 +15,7 @@ namespace QLBH.Models
         void Remove(int id);
         UserModel GetById(int id);
         UserModel GetByUsername(string username);
-        IEnumerable<UserModel> GetByAll();
+        List<UserModel> GetByAll();
         //...
     }
 }

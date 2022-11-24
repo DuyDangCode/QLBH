@@ -20,6 +20,7 @@ namespace QLBH.ViewModels
         private DateTime _expiryTime;
         private string _supply;
         public string name { get=>_name; set { _name = value; OnPropertyChanged(nameof(name)); } }
+        public long price { get => _price; set { _price = value; OnPropertyChanged(nameof(price)); } }
    
         private bool CanExecuteAddProducts(object obj)
         {
@@ -32,13 +33,27 @@ namespace QLBH.ViewModels
 
             if (name == null)
                 MessageBox.Show("Vui lòng điền tên sản phẩm");
-            else MessageBox.Show(name);
+            if(price == 0)
+                MessageBox.Show("Vui lòng điền gía sản phẩm");
+            else { 
+                ProductModel pd = new ProductModel();
+                pd.Name = name;
+                pd.Price = price;
+                ProductRepository repository = new ProductRepository();
+                repository.Add(pd);
+                MessageBox.Show("Đã thêm thành công");
+                StorageViewModel storageViewModel = new StorageViewModel();
+                
+                
+
+            }
         }
+
 
 
         public AddProductsViewModel()
         {
-           
+            
 
             Add = new ViewModelCommand(ExecuteAddProducts, CanExecuteAddProducts);
         }

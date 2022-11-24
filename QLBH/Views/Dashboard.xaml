@@ -37,7 +37,11 @@
         <DataTemplate DataType="{x:Type viewModel:StorageViewModel}">
             <local:StorageView />
         </DataTemplate>
-        
+
+        <DataTemplate DataType="{x:Type viewModel:UserManagementViewModel}">
+            <local:UserMangementView />
+        </DataTemplate>
+
     </Window.Resources>
 
 
@@ -234,7 +238,7 @@
 
                             <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color5}"
-                                 Command="{Binding ShowCustomerViewCommand}">
+                                 Command="{Binding ShowUserMangementViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Người dùng" Style="{StaticResource menuButtonText}"/>
@@ -243,7 +247,7 @@
 
                             <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color6}"
-                                 Command="{Binding ShowCustomerViewCommand}">
+                                 Command="{Binding ShowStorageViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="Gears" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Cài đặt" Style="{StaticResource menuButtonText}"/>
@@ -253,7 +257,7 @@
                             <Grid Margin="0,50,0,0">
                                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color7}"
-                                 Command="{Binding ShowCustomerViewCommand}" Height="50" Margin="-5,0,0,0" VerticalAlignment="Top" Checked="btnLogOut_Click">
+                                 Height="50" Margin="-5,0,0,0" VerticalAlignment="Top" Checked="btnLogOut_Click">
                                     <StackPanel Orientation="Horizontal">
                                         <fa:IconImage Icon="DoorOpen" Style="{StaticResource menuButtonIcon}"/>
                                         <TextBlock Text="Đăng xuất" Style="{StaticResource menuButtonText}"/>

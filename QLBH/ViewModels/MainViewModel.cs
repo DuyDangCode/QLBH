@@ -75,6 +75,7 @@ namespace QLBH.ViewModels
         public ICommand ShowCustomerViewCommand { get; }
 
         public ICommand ShowStorageViewCommand { get; }
+        public ICommand ShowUserMangementViewCommand { get; }
 
         public MainViewModel()
         {
@@ -84,6 +85,7 @@ namespace QLBH.ViewModels
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
             ShowStorageViewCommand = new ViewModelCommand(ExecuteShowStorageViewCommand);
+            ShowUserMangementViewCommand = new ViewModelCommand(ExecuteShowUserMangementViewCommand);
             //Default view
             ExecuteShowHomeViewCommand(null);
             //LoadCurrentUserData();
@@ -108,6 +110,12 @@ namespace QLBH.ViewModels
             //Icon = IconChar.Home;
         }
 
+        private void ExecuteShowUserMangementViewCommand(object obj)
+        {
+            CurrentChildView = new UserManagementViewModel();
+
+
+        }
 
         //private void LoadCurrentUserData()
         //{

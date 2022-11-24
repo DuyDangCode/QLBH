@@ -1,17 +1,14 @@
-﻿<Window x:Class="QLBH.AddProductsView"
+﻿<Window x:Class="QLBH.ModifyProductsView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLBH"
-        xmlns:viewModel="clr-namespace:QLBH.ViewModels"
         mc:Ignorable="d"
-        Title="AddProductsView" Height="500" Width="650">
-   
-    <Window.DataContext>
-        <viewModel:AddProductsViewModel/>
-        
-    </Window.DataContext>
+        xmlns:viewModel="clr-namespace:QLBH.ViewModels"
+        Title="ModifyProductsView" Height="500" Width="650">
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition ></RowDefinition>
@@ -19,17 +16,17 @@
             <RowDefinition ></RowDefinition>
             <RowDefinition ></RowDefinition>
             <RowDefinition ></RowDefinition>
-            
+
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            
+
             <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0">
                 <TextBlock Height="20" Width="200" Foreground="Black"
                            FontWeight="Medium">
-                    Tên sản phẩm
+                    ID sản phẩm
                 </TextBlock>
-                <TextBox Height="20" Width="200" Text="{Binding name, Mode=TwoWay}">
+                <TextBox x:Name="id" Height="20" Width="200">
 
                 </TextBox>
             </StackPanel>
@@ -37,9 +34,19 @@
             <StackPanel HorizontalAlignment="Left" Margin="210,0,0,0">
                 <TextBlock Height="20" Width="200" Foreground="Black"
                            FontWeight="Medium">
+                    Tên sản phẩm
+                </TextBlock>
+                <TextBox x:Name="name" Height="20" Width="200" >
+
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Left" Margin="415,0,0,0">
+                <TextBlock Height="20" Width="200" Foreground="Black"
+                           FontWeight="Medium">
                     Giá
                 </TextBlock>
-                <TextBox Height="20" Width="200" Text="{Binding price, Mode=TwoWay}">
+                <TextBox x:Name="price" Height="20" Width="200" >
 
                 </TextBox>
             </StackPanel>
@@ -49,7 +56,7 @@
             <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0">
                 <TextBlock Height="20" Width="200" Foreground="Black"
                            FontWeight="Medium">
-                    Số lượng 
+                    Số lượng
                 </TextBlock>
                 <TextBox Height="20" Width="200">
 
@@ -68,7 +75,7 @@
             <StackPanel HorizontalAlignment="Left" Margin="415,0,0,0">
                 <TextBlock Height="20" Width="200" Foreground="Black"
                            FontWeight="Medium">
-                    Ghi chú
+                    Chọn file ảnh
                 </TextBlock>
                 <TextBox Height="20" Width="200">
 
@@ -111,17 +118,18 @@
             <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0">
                 <TextBlock Height="20" Width="200" Foreground="Black"
                            FontWeight="Medium">
-                    File ảnh
+                    Ghi chú
                 </TextBlock>
-                <TextBox Height="20" Width="200">
+                <TextBox Height="65" Width="610">
 
                 </TextBox>
             </StackPanel>
         </Grid>
 
         <Grid Grid.Row="4">
-            <Button Width="200" Height="50" Content="Thêm" Command="{Binding Add}"></Button>
+            <Button x:Name="Modify_btn" Width="200" Height="50" Content="Sửa thông tin"></Button>
         </Grid>
-        
+
     </Grid>
+
 </Window>

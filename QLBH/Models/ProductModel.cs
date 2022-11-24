@@ -19,19 +19,25 @@ namespace QLBH.Models
         public string ProductType { get; set; }
         public string ImagePath { get; set; }
 
-        //public ProductModel()
-        //{
-        //    Name = "";
-        //    Id = "";
-        //    Price = 0;
-        //    Date = new System.DateTime();
-        //    InitialAmount = 0;  
-        //    CurrentAmount = 0;
-        //    Capital = 0;
-        //    Description = "";
-        //    ProductType = "";
-        //    ImagePath = "";
-        //}
+        public ProductModel(string _name, string _id, long _price)
+        {
+            Name = _name;
+            Id = _id;
+            Price = _price;
+            Date = new System.DateTime();
+            InitialAmount = 0;
+            CurrentAmount = 0;
+            Capital = 0;
+            Description = "";
+            ProductType = "";
+            ImagePath = "";
+        }
 
+
+
+        public ProductModel()
+        {
+            
+        }
     }
 }
