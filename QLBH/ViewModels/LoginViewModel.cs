@@ -111,13 +111,12 @@ namespace QLBH.ViewModels
             var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
             if (isValidUser)
             {
-                Thread.CurrentPrincipal = new GenericPrincipal(
-                    new GenericIdentity(Username), null);
+                Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
                 IsViewVisible = false;
             }
             else
             {
-                ErrorMessage = "* Invalid username or password";
+                ErrorMessage = "* Mật khẩu hoặc tài khoản không đúng!!!";
             }
 
         }

@@ -13,7 +13,7 @@ namespace QLBH.ViewModels
 {
     public class ModifyProductsViewModel : ViewModelBase
     {
-        public ICommand Modify { get; set; }
+        
 
         //public static ModifyProductsViewModel instance;
         public ProductModel ProductIsChoosing { get; set; }
@@ -30,38 +30,11 @@ namespace QLBH.ViewModels
         public long price { get => _price; set { _price = value; OnPropertyChanged(nameof(price)); } }
         public string id { get => _id; set { _id = value; OnPropertyChanged(nameof(id)); } }
 
-        private bool CanExecuteModifyProducts(object obj)
-        {
-
-            return true;
-        }
-
-        public void ExecuteModifyProducts(object obj)
-        {
-            
-            if (name == null)
-                MessageBox.Show("Tên sản phẩm không được để trống!");
-            if (price == 0)
-                MessageBox.Show("Giá sản phẩn không được để trống!");
-            else
-            {
-                ProductModel pd = new ProductModel();
-                pd.Id = id;
-                pd.Name = name;
-                pd.Price = price;
-                ProductRepository repository = new ProductRepository();
-                repository.Modify(pd);
-                MessageBox.Show("Đã sửa thành công");
-                
-
-
-
-            }
-        }
+        
 
         public void Load()
         {
-            ModifyProductsView modifyProductsView = new ModifyProductsView(id,name,Convert.ToString(price), Modify);
+            ModifyProductsView modifyProductsView = new ModifyProductsView(id,name,Convert.ToString(price));
             modifyProductsView.Show();
 
             name = modifyProductsView.name.Text;
@@ -71,11 +44,11 @@ namespace QLBH.ViewModels
         public ModifyProductsViewModel()
         {
             
-            //price = StorageViewModel.instance.SelectecItems.Price;
+            
 
             
             
-            Modify = new ViewModelCommand(ExecuteModifyProducts, CanExecuteModifyProducts);
+           
             
         }
 

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using QLBH.Models;
 using QLBH.ViewModels;
+using QLBH.Repositories;
 
 namespace QLBH
 {
@@ -23,11 +24,42 @@ namespace QLBH
     {
         //public string name2 { get; set; }
         //public string price2 { get; set; }
+        private string idd;
 
-        //public ICommand Modify;
+        public ICommand Modify { get; set; }
+        private bool CanExecuteModifyProducts(object obj)
+        {
+
+            return true;
+
+        }
+
+        public void ExecuteModifyProducts(object obj)
+        {
+
+            if (name.Text == null)
+                MessageBox.Show("Tên sản phẩm không được để trống!");
+            if (Convert.ToInt64(price.Text) == 0)
+                MessageBox.Show("Giá sản phẩn không được để trống!");
+            else
+            {
+                ProductModel pd = new ProductModel();
+                pd.Id = idd;
+                pd.Name = name.Text;
+                pd.Price = Convert.ToInt64(price.Text);
+                ProductRepository repository = new ProductRepository();
+                repository.Modify(pd);
+                MessageBox.Show("Đã sửa thành công");
+
+
+
+
+            }
+        }
         public ModifyProductsView()
         {
             InitializeComponent();
+            Modify = new ViewModelCommand(ExecuteModifyProducts, CanExecuteModifyProducts);
             //ModifyProductsViewModel a = new ModifyProductsViewModel();
             //a.ProductIsChoosing = pd;
             //name2 = pd.Name;
@@ -37,15 +69,17 @@ namespace QLBH
 
         }
 
-        public ModifyProductsView(string _id ,string _name, string _price, ICommand _modify)
+        public ModifyProductsView(string _id ,string _name, string _price)
         {
             InitializeComponent();
+            Modify = new ViewModelCommand(ExecuteModifyProducts, CanExecuteModifyProducts);
 
             id.Text = _id;
             price.Text = _price;
             name.Text = _name;
-            
-            Modify_btn.Command = _modify;
+            idd = _id; 
+
+            Modify_btn.Command = Modify;
         }
     }
 }

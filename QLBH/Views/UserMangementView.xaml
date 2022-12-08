@@ -61,7 +61,9 @@
 
             <Button Width="100"
                     HorizontalAlignment="Left"
-                    Margin="395,0,0,0" Grid.Column="2">
+                    Margin="395,0,0,0" 
+                    Grid.Column="2"
+                    Command="{Binding RemoveUser}">
                 <TextBlock Text="Xóa"/>
 
             </Button>
@@ -86,7 +88,7 @@
             <!--SelectedItem= "{Binding SelectecItems, Mode=OneWayToSource}" -->
             <ListView Name="listProduct"
                   Margin="2,20,2,0"
-                   
+                  SelectedItem= "{Binding SelectedUser, Mode=OneWayToSource}"
                   BorderBrush="Transparent">
                 <ListView.View>
                     <GridView>

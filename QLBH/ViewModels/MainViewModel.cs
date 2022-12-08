@@ -16,11 +16,16 @@ namespace QLBH.ViewModels
     public class MainViewModel : ViewModelBase
     {
         //Fields
+        UserModel _user;
         private UserAccountModel _currentUserAccount;
         private ViewModelBase _currentChildView;
+        private string _profileImg;
         //private string _caption;
         //private IconChar _icon;
         private IUserRepository userRepository;
+
+        public string profileImg { get { return _profileImg; } set { _profileImg = value; OnPropertyChanged(nameof(profileImg)); } }
+
         //Properties
         //public UserAccountModel CurrentUserAccount
         //{
@@ -77,15 +82,27 @@ namespace QLBH.ViewModels
         public ICommand ShowStorageViewCommand { get; }
         public ICommand ShowUserMangementViewCommand { get; }
 
+        public ICommand ShowBillManagementViewCommand { get; }
+        public ICommand ShowMakeBillViewCommand { get; }
+        public ICommand ShowSettingViewCommand { get; }
+
+
         public MainViewModel()
         {
-            //userRepository = new UserRepository();
+            userRepository = new UserRepository();
             //CurrentUserAccount = new UserAccountModel();
             //Initialize commands
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
             ShowStorageViewCommand = new ViewModelCommand(ExecuteShowStorageViewCommand);
             ShowUserMangementViewCommand = new ViewModelCommand(ExecuteShowUserMangementViewCommand);
+            ShowBillManagementViewCommand= new ViewModelCommand(ExecuteShowBillManagementViewCommand);
+            ShowMakeBillViewCommand = new ViewModelCommand(ExecuteShowMakeBillViewCommand);
+            ShowSettingViewCommand = new ViewModelCommand(ExecuteShowSettingViewCommand);
+
+            //_user = userRepository.getCurrentUser();
+            //profileImg = _user.profileImage;
+            
             //Default view
             ExecuteShowHomeViewCommand(null);
             //LoadCurrentUserData();
@@ -115,6 +132,27 @@ namespace QLBH.ViewModels
             CurrentChildView = new UserManagementViewModel();
 
 
+        }
+
+        private void ExecuteShowBillManagementViewCommand(object obj)
+        {
+            CurrentChildView = new BillMagamentViewModel();
+
+
+        }
+
+        private void ExecuteShowMakeBillViewCommand(object obj)
+        {
+            CurrentChildView = new MakeBillViewModel();
+            //Caption = "Customers";
+            //Icon = IconChar.UserGroup;
+        }
+
+        private void ExecuteShowSettingViewCommand(object obj)
+        {
+            CurrentChildView = new SettingViewModel();
+            //Caption = "Customers";
+            //Icon = IconChar.UserGroup;
         }
 
         //private void LoadCurrentUserData()

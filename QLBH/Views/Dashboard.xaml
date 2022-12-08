@@ -42,6 +42,18 @@
             <local:UserMangementView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:BillMagamentViewModel}">
+            <local:BillManagementView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:MakeBillViewModel}">
+            <local:MakeBillView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:SettingViewModel}">
+            <local:SettingView />
+        </DataTemplate>
+
     </Window.Resources>
 
 
@@ -82,8 +94,6 @@
                         <ColumnDefinition Width="25"/>
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
-
-
                     <Image Source="\Images\image_logo.png"
                            Width="30"
                            Height="30"
@@ -91,7 +101,6 @@
                            Margin="10,0,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"/>
-
                     <TextBlock Text="Phần mềm quản lý bán hàng"
                            Foreground="{StaticResource titleColor1}"
                            FontSize="15"
@@ -102,8 +111,6 @@
                            Margin="45,0,0,0"
                            HorizontalAlignment="Left"
                            FontWeight="Light"/>
-
-
                     <Button x:Name="btnMinimize"
                         
                         BorderThickness="0"
@@ -135,8 +142,6 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-
-
                     <Button x:Name="btnClose"
                         
                         BorderThickness="0"
@@ -171,17 +176,17 @@
 
 
                 </Grid>
-
-                <Grid Grid.Row="1">
+                
+                <Grid Grid.Row="1" Margin="20"> 
                     <Grid.ColumnDefinitions>
                         <!--Navigation menu-->
-                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="200"/>
                         <!--Content section-->
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     
                     <!--Navigation menu-->
-                    <Border CornerRadius="10,0,0,10" 
+                    <Border CornerRadius="25" 
                             Grid.Column="0">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
@@ -193,19 +198,30 @@
                         <!--MenuButton-->
                         <StackPanel>
 
-                            <Button Height="60" Margin="0,30,0,30" Background="Transparent" Click="Button_Click" BorderThickness="0">
-                                <Image Source="\Images\Image_User.png"/>
-                            </Button>
+                            <Grid Height="60" Margin="0,30,0,30" Background="Transparent">
+                                <Image Source="{Binding profileImg}"/>
+                            </Grid>
                             
                             <RadioButton Style="{StaticResource menuButton}"
                                          Tag="{StaticResource color1}"
-                                         Command="{Binding ShowHomeViewCommand}">
+                                         Command="{Binding ShowHomeViewCommand}"
+                                         IsChecked="True">
                                 <StackPanel Orientation="Horizontal">
                                     
                                     <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Trang Chủ" Style="{StaticResource menuButtonText}"/>
                                 </StackPanel>
                             </RadioButton>
+
+                            <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color10}"
+                                 Command="{Binding ShowMakeBillViewCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="MoneyBill" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Tạo hóa đơn" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
 
                             <RadioButton Style="{StaticResource menuButton}"
                                          Tag="{StaticResource color2}"
@@ -218,7 +234,7 @@
 
                             <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color3}"
-                                 Command="{Binding ShowCustomerViewCommand}">
+                                 Command="{Binding ShowBillManagementViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="CashRegister" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Hóa đơn" Style="{StaticResource menuButtonText}"/>
@@ -247,14 +263,14 @@
 
                             <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color6}"
-                                 Command="{Binding ShowStorageViewCommand}">
+                                 Command="{Binding ShowSettingViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="Gears" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Cài đặt" Style="{StaticResource menuButtonText}"/>
                                 </StackPanel>
                             </RadioButton>
 
-                            <Grid Margin="0,50,0,0">
+                            <Grid Margin="0,20,0,0">
                                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color7}"
                                  Height="50" Margin="-5,0,0,0" VerticalAlignment="Top" Checked="btnLogOut_Click">
@@ -279,7 +295,7 @@
                             </LinearGradientBrush>
                         </Border.Background>
                         <ContentControl Content="{Binding CurrentChildView}"
-                                        Margin="25">
+                                        Margin="25,0,0,0">
                             
                             
                         </ContentControl>

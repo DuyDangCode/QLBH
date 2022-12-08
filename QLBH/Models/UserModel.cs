@@ -14,6 +14,9 @@ namespace QLBH.Models
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-
+        public string profileImage { get; set; }
+        public int Role { get; set; } 
+        
+        public string cicNumber { get; set; }
     }
 }

@@ -9,11 +9,12 @@ namespace QLBH.Models
 {
     public interface IUserRepository
     {
+        UserModel getCurrentUser(); 
         bool AuthenticateUser(NetworkCredential credential);
         void Add(UserModel userModel);
-        void Edit(UserModel userModel);
-        void Remove(int id);
-        UserModel GetById(int id);
+        void Modify(UserModel userModel);
+        void Remove(string id);
+        UserModel GetById(string id);
         UserModel GetByUsername(string username);
         List<UserModel> GetByAll();
         //...

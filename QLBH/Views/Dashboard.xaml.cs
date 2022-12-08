@@ -24,6 +24,11 @@ namespace QLBH
             InitializeComponent();
         }
 
+        ~Dashboard()
+        {
+            MessageBox.Show("Da huy");
+        }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -49,9 +54,14 @@ namespace QLBH
 
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
+           
             MainWindow mw = new MainWindow();   
             mw.Show();
+
+            
+            
             this.Close();
+            
         }
 
        
