@@ -49,33 +49,29 @@
                 <ColumnDefinition Width="52*"/>
                 <ColumnDefinition Width="617*"/>
             </Grid.ColumnDefinitions>
-            <Button Width="100"
-                    HorizontalAlignment="Left"
-                    Margin="134,0,0,0" 
-                    Command="{Binding AddUser}" Grid.Column="2">
-                <TextBlock Text="Thêm"/>
 
+
+
+
+            <Button Style="{StaticResource functionButton}"
+                    Margin="134,0,0,0" Grid.Column="2"
+                    Command="{Binding AddUser}">
+
+                <TextBlock Style="{StaticResource functionButtonText}">Thêm</TextBlock>
             </Button>
 
-
-
-            <Button Width="100"
-                    HorizontalAlignment="Left"
-                    Margin="395,0,0,0" 
-                    Grid.Column="2"
+            <Button Style="{StaticResource functionButton}"
+                    Margin="395,0,0,0" Grid.Column="2"
                     Command="{Binding RemoveUser}">
-                <TextBlock Text="Xóa"/>
 
+                <TextBlock Style="{StaticResource functionButtonText}">Xóa</TextBlock>
             </Button>
 
-            <Button x:Name="btn"
-                    Width="100"
-                    HorizontalAlignment="Left"
+            <Button Style="{StaticResource functionButton}"
                     Margin="267,0,0,0" Grid.Column="2">
-                <TextBlock Text="Sửa"/>
+                <TextBlock Style="{StaticResource functionButtonText}">Sửa</TextBlock>
 
             </Button>
-
 
 
         </Grid>

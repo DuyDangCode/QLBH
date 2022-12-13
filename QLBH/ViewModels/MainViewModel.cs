@@ -24,7 +24,15 @@ namespace QLBH.ViewModels
         //private IconChar _icon;
         private IUserRepository userRepository;
 
-        public string profileImg { get { return _profileImg; } set { _profileImg = value; OnPropertyChanged(nameof(profileImg)); } }
+
+       public UserAccountModel CurrentUserAccount
+        {
+            get { return _currentUserAccount; }
+            set { _currentUserAccount = value;
+                OnPropertyChanged(nameof(CurrentUserAccount));
+            }
+
+        }
 
         //Properties
         //public UserAccountModel CurrentUserAccount
@@ -90,12 +98,14 @@ namespace QLBH.ViewModels
         public MainViewModel()
         {
             userRepository = new UserRepository();
-            //CurrentUserAccount = new UserAccountModel();
+
+            CurrentUserAccount = new UserAccountModel();
+            LoadCurrentUserData();
             //Initialize commands
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
-            ShowStorageViewCommand = new ViewModelCommand(ExecuteShowStorageViewCommand);
-            ShowUserMangementViewCommand = new ViewModelCommand(ExecuteShowUserMangementViewCommand);
+            ShowStorageViewCommand = new ViewModelCommand(ExecuteShowStorageViewCommand, CanExecuteShowStorageViewCommand);
+            ShowUserMangementViewCommand = new ViewModelCommand(ExecuteShowUserMangementViewCommand, CanExecuteShowUserMangementViewCommand);
             ShowBillManagementViewCommand= new ViewModelCommand(ExecuteShowBillManagementViewCommand);
             ShowMakeBillViewCommand = new ViewModelCommand(ExecuteShowMakeBillViewCommand);
             ShowSettingViewCommand = new ViewModelCommand(ExecuteShowSettingViewCommand);
@@ -105,7 +115,7 @@ namespace QLBH.ViewModels
             
             //Default view
             ExecuteShowHomeViewCommand(null);
-            //LoadCurrentUserData();
+            
         }
         private void ExecuteShowCustomerViewCommand(object obj)
         {
@@ -155,21 +165,76 @@ namespace QLBH.ViewModels
             //Icon = IconChar.UserGroup;
         }
 
-        //private void LoadCurrentUserData()
+        //------------
+        //private bool CanExecuteShowCustomerViewCommand(object obj)
         //{
-        //    var user = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
-        //    if (user != null)
-        //    {
-        //        CurrentUserAccount.Username = user.Username;
-        //        CurrentUserAccount.DisplayName = $"Welcome {user.Name} {user.LastName} ;)";
-        //        CurrentUserAccount.ProfilePicture = null;
-        //    }
-        //    else
-        //    {
-        //        CurrentUserAccount.DisplayName = "Invalid user, not logged in";
-        //        //Hide child views.
-        //    }
+        //    if(CurrentUserAccount.Role == 0)
+        //        return true;
+        //    return false;
         //}
+        //private bool CanExecuteShowHomeViewCommand(object obj)
+        //{
+        //    if (CurrentUserAccount.Role == 0)
+        //        return true;
+        //    return false;
+        //}
+
+        private bool CanExecuteShowStorageViewCommand(object obj)
+        {
+            if (CurrentUserAccount.Role == 0)
+                return true;
+            return false;
+        }
+
+        private bool CanExecuteShowUserMangementViewCommand(object obj)
+        {
+            if (CurrentUserAccount.Role == 0)
+                return true;
+            return false;
+
+
+        }
+
+        //private bool CanExecuteShowBillManagementViewCommand(object obj)
+        //{
+        //    if (CurrentUserAccount.Role == 0)
+        //        return true;
+        //    return false;
+
+
+        //}
+
+        //private bool CanExecuteShowMakeBillViewCommand(object obj)
+        //{
+        //    if (CurrentUserAccount.Role == 0)
+        //        return true;
+        //    return false;
+        //}
+
+        //private bool CanExecuteShowSettingViewCommand(object obj)
+        //{
+        //    if (CurrentUserAccount.Role == 0)
+        //        return true;
+        //    return false;
+        //}
+
+        private void LoadCurrentUserData()
+        {
+            var user = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
+            if (user != null)
+            {
+                CurrentUserAccount.Username = user.Username;
+                CurrentUserAccount.DisplayName = $"Welcome {user.Name} {user.LastName} ;)";
+                CurrentUserAccount.ProfilePicture = user.profileImage;
+                CurrentUserAccount.Role = user.Role;
+            }
+            else
+            {
+                CurrentUserAccount.DisplayName = "Invalid user, not logged in";
+                Application.Current.Shutdown();
+                //Hide child views.
+            }
+        }
     }
 }
 

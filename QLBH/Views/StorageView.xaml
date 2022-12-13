@@ -29,15 +29,8 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-
                 <ComboBox Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" HorizontalAlignment="Left" SelectedIndex="0" VerticalAlignment="Center" Margin="10,0,0,0" Width="130" Height="35"></ComboBox>
-                
-
-                    <TextBox x:Name="FilterTextbox" TextChanged="FilterTextbox_TextChanged" Foreground="White" BorderThickness="0,0,0,2" BorderBrush="White" Background="Transparent" Margin="5,20,0,0" VerticalAlignment="Center"  Width="200" Text="{Binding name, Mode=TwoWay}">
-
-                    </TextBox>
-                
-                
+                <TextBox x:Name="FilterTextbox" TextChanged="FilterTextbox_TextChanged" Foreground="White" BorderThickness="0,0,0,2" BorderBrush="White" Background="Transparent" Margin="5,20,0,0" VerticalAlignment="Center"  Width="200" Text="{Binding name, Mode=TwoWay}"></TextBox>
             </Grid>
 
 
@@ -50,80 +43,25 @@
                 <ColumnDefinition Width="52*"/>
                 <ColumnDefinition Width="617*"/>
             </Grid.ColumnDefinitions>
-            <Button BorderThickness="0"
-                    Content="Thêm"
-                    Foreground="white"
-                    Cursor="Hand"
-                    FontSize="20"
-                    Width="100"
-                    HorizontalAlignment="Left"
-                    Margin="134,0,0,0" Click="Button_Click"
-                    FontWeight="Bold"
-                    Command="{Binding AddProducts}" Grid.Column="2">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="{StaticResource color1}" />
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource color10}"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-              
+            
+            <Button Style="{StaticResource functionButton}"
+                    Margin="134,0,0,0" Grid.Column="2"
+                    Command="{Binding AddProducts}">
 
-
+                <TextBlock Style="{StaticResource functionButtonText}">Thêm</TextBlock>
             </Button>
 
-
-
-            <Button Width="100"
-                    HorizontalAlignment="Left"
-                    BorderThickness="0"
-                    Content="Xoa"
-                    Foreground="white"
-                    Cursor="Hand"
-                    FontSize="20"
-                    FontWeight="Bold"
+            <Button Style="{StaticResource functionButton}"
                     Margin="395,0,0,0" Grid.Column="2"
                     Command="{Binding RemoveProducts}">
 
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="{StaticResource color1}" />
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource color10}"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
+                <TextBlock Style="{StaticResource functionButtonText}">Xóa</TextBlock>
             </Button>
 
-            <Button x:Name="btn"
-                    Width="100"
-                    HorizontalAlignment="Left"
-                    BorderThickness="0"
-                    Content="Sửa"
-                    Foreground="white"
-                    Cursor="Hand"
-                    FontSize="20"
-                    FontWeight="Bold"
-                    Margin="267,0,0,0" Grid.Column="2" Click="btn_Click"
+            <Button Style="{StaticResource functionButton}"
+                    Margin="267,0,0,0" Grid.Column="2" 
                     Command="{Binding ModifyProducts}">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="{StaticResource color1}" />
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource color10}"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="{StaticResource color10}"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
+                <TextBlock Style="{StaticResource functionButtonText}">Sửa</TextBlock>
 
             </Button>
 

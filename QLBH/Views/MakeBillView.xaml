@@ -11,6 +11,105 @@
         <viewModel:MainViewModel/>
     </UserControl.DataContext>
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <TextBlock  Foreground="White">Thông tin hóa đơn</TextBlock>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBlock Foreground="White">Mã hóa đơn</TextBlock>
+                    <TextBox Height="20" Width="250" HorizontalAlignment="Left"></TextBox>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <TextBlock Foreground="White">Tên nhân viên</TextBlock>
+                    <TextBox Height="20" Width="250" HorizontalAlignment="Left"></TextBox>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <TextBlock Foreground="White">Ngày hóa đơn</TextBlock>
+                    <TextBox Height="20" Width="250" HorizontalAlignment="Left"></TextBox>
+                </Grid>
+            </Grid>
+            <!---->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <TextBlock  Foreground="White">Chi tiết hóa đơn</TextBlock>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBlock Foreground="White">Tên sản phẩm</TextBlock>
+                    <ComboBox Height="20" Width="250" HorizontalAlignment="Left"></ComboBox>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <TextBlock Foreground="White">Đơn giá</TextBlock>
+                    <TextBox Height="20" Width="250" HorizontalAlignment="Left"></TextBox>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <TextBlock Foreground="White">Số lượng</TextBlock>
+                        <TextBox Height="20" Width="150" HorizontalAlignment="Left"></TextBox>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <TextBlock Foreground="White">Khuyến mãi</TextBlock>
+                        <TextBox Height="20" Width="150" HorizontalAlignment="Left"></TextBox>
+                    </Grid>
+                    
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Height="20" Width="100"></Button>
+                    <Button Grid.Column="1" Height="20" Width="100"></Button>
+                    <Button Grid.Column="2" Height="20" Width="100"></Button>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <ListView Name="listProduct"
+                  Margin="2,20,2,0"
+                  SelectedItem= "{Binding SelectecItems, Mode=OneWayToSource}"  
+                  BorderBrush="Transparent">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                        <GridViewColumn Header="Tên Sản Phẩm" Width="auto" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                        <GridViewColumn Header="Giá" Width="auto" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
+                    </GridView>
+
+                </ListView.View>
+                <!--<ListView.Template>
+                    
+                </ListView.Template>-->
+
+            </ListView>
+        </Grid>
     </Grid>
 </UserControl>

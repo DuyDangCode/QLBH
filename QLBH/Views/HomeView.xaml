@@ -26,7 +26,10 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Background="Pink" Height="150" Width="250">
                 <StackPanel>
-                    <TextBlock></TextBlock>
+                    
+                    <TextBlock Text="Danh Thu Ngày: ">
+                       
+                    </TextBlock>
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1" Background="Pink" Height="150" Width="250"></Grid>

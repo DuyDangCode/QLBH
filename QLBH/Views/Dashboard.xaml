@@ -199,7 +199,8 @@
                         <StackPanel>
 
                             <Grid Height="60" Margin="0,30,0,30" Background="Transparent">
-                                <Image Source="{Binding profileImg}"/>
+                                <Image Height="70" Width="70" Source="{Binding CurrentUserAccount.ProfilePicture}"></Image>
+                                <!--<TextBlock Text="{Binding CurrentUserAccount.ProfilePicture}"></TextBlock>-->
                             </Grid>
                             
                             <RadioButton Style="{StaticResource menuButton}"

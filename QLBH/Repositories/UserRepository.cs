@@ -52,24 +52,24 @@ namespace QLBH.Repositories
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
                 validUser = command.ExecuteScalar() == null ? false : true;
-                data = command.ExecuteReader();
-                var temp = data.Read();
-                if (temp)
-                {
-                    currentUser.Id = data["ID_USER"].ToString();
+                //data = command.ExecuteReader();
+                //var temp = data.Read();
+                //if (temp)
+                //{
+                //    currentUser.Id = data["ID_USER"].ToString();
 
 
-                    currentUser.Username = data["USERNAME"].ToString();
-                    currentUser.Name = data["NAME"].ToString();
-                    currentUser.LastName = data["LASTNAME"].ToString();
-                    currentUser.Email = data["EMAIL"].ToString();
-                    // role = 0 => admin
-                    // role = 1 => user
-                    currentUser.Role = Convert.ToInt32(data["ROLE"]);
-                    currentUser.profileImage = data["PROFILE_IMAGE"].ToString();
+                //    currentUser.Username = data["USERNAME"].ToString();
+                //    currentUser.Name = data["NAME"].ToString();
+                //    currentUser.LastName = data["LASTNAME"].ToString();
+                //    currentUser.Email = data["EMAIL"].ToString();
+                //    // role = 0 => admin
+                //    // role = 1 => user
+                //    currentUser.Role = Convert.ToInt32(data["ROLE"]);
+                //    currentUser.profileImage = data["PROFILE_IMAGE"].ToString();
                     
-                    currentUser.cicNumber = data["CIC_NUMBER"].ToString();
-                }
+                //    currentUser.cicNumber = data["CIC_NUMBER"].ToString();
+                //}
             }
             
             return validUser;
@@ -133,7 +133,37 @@ namespace QLBH.Repositories
 
         public UserModel GetByUsername(string username)
         {
-            throw new NotImplementedException();
+            UserModel user = null;
+            SqlDataReader data;
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select *from [User] where username=@username and state = 0";
+                command.Parameters.Add("@username", SqlDbType.NVarChar).Value = username;
+                using(var reader = command.ExecuteReader())
+                {
+                    if(reader.Read())
+                    {
+                        user = new UserModel()
+                        {
+                            Id = reader["ID_USER"].ToString(),
+                            Username = reader["USERNAME"].ToString(),
+                            Name = reader["Name"].ToString(),
+                            LastName = String.Empty,
+                            Email = String.Empty,
+                            profileImage = reader["PROFILE_IMAGE"].ToString(),
+                            Role = Convert.ToInt32(reader["ROLE"]),
+
+                    };
+                    }
+                }
+                
+               
+            }
+
+            return user;
         }
 
         public void Remove(string id)

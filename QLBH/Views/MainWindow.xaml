@@ -68,7 +68,7 @@
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
                     
-                    <TextBlock Text="LOG IN"
+                    <TextBlock Text="Đăng nhập"
                            Foreground="DarkGray"
                            FontSize="10"
                            Grid.Column="0"
@@ -146,7 +146,7 @@
                                 Orientation="Vertical"
                                 Margin="0,35,0,0">
                     <Image Source="\Images\image_logo.png" Width="100" Height="100"/>
-                    <TextBlock FontSize="12" FontWeight="Medium" Foreground="White" Margin="0,50,0,0">Username: </TextBlock>
+                    <TextBlock FontSize="12" FontWeight="Medium" Foreground="White" Margin="0,50,0,0">Tài khoản: </TextBlock>
                     <TextBox x:Name="txtUser"
                              FontSize="13"
                              FontWeight="Medium"
@@ -162,7 +162,7 @@
                         
                     </TextBox>
                     
-                    <TextBlock FontSize="12" FontWeight="Medium" Foreground="White" Margin="0,20,0,0">Password:</TextBlock>
+                    <TextBlock FontSize="12" FontWeight="Medium" Foreground="White" Margin="0,20,0,0">Mật khẩu:</TextBlock>
                     <StackPanel>
                         <customcontrols:BindablePasswordBox 
                              Height="28"
@@ -178,7 +178,7 @@
                     <Button x:Name="btnLogin"
                         
                         BorderThickness="0"
-                        Content="Login"
+                        Content="Đăng nhập"
                         Foreground="White"
                         FontSize="10"
                         Command="{Binding LoginCommand}"
@@ -212,13 +212,13 @@
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
 
-                        <TextBlock Text="Forgot Password?"
+                        <TextBlock Text="Quên mật khẩu?"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"/>
 
-                        <TextBlock Text="Reset"
+                        <TextBlock Text="Ấn vào đây."
                                Foreground="White"
                                FontSize="12"
                                FontWeight="Medium"

@@ -10,6 +10,10 @@ namespace QLBH.Models
     {
         public string Username { get; set; }
         public string DisplayName { get; set; }
-        public byte[] ProfilePicture { get; set; }
+        public string ProfilePicture { get; set; }
+        
+        //Role = 0 Admin
+        //Role = 1 User
+        public int Role { get; set; }
     }
 }

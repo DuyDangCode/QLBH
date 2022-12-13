@@ -26,7 +26,7 @@
                 <RowDefinition Height="65"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+            <!--<Grid Grid.Row="0">
 
                 <ComboBox Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" HorizontalAlignment="Left" SelectedIndex="0" VerticalAlignment="Center" Margin="10,0,0,0" Width="130" Height="35"></ComboBox>
 
@@ -36,7 +36,7 @@
                 </TextBox>
 
 
-            </Grid>
+            </Grid>-->
 
 
         </Grid>
@@ -46,7 +46,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="131*"/>
                 <ColumnDefinition Width="52*"/>
-                <ColumnDefinition Width="617*"/>
+                <ColumnDefinition Width="66*"/>
+                <ColumnDefinition Width="551*"/>
             </Grid.ColumnDefinitions>
             <!--<Button BorderThickness="0"
                     Content="Thêm"
@@ -78,12 +79,12 @@
             <Button Width="100"
                     HorizontalAlignment="Left"
                     BorderThickness="0"
-                    Content="Xoa"
+                    Content="Xóa"
                     Foreground="white"
                     Cursor="Hand"
                     FontSize="20"
                     FontWeight="Bold"
-                    Margin="395,0,0,0" Grid.Column="2"
+                    Margin="329,0,0,0" Grid.Column="3"
                     Command="{Binding RemoveBill}">
 
                 <Button.Style>
@@ -100,28 +101,15 @@
 
             <Button x:Name="btn"
                     Width="100"
-                    HorizontalAlignment="Left"
-                    BorderThickness="0"
-                    Content="Sửa"
-                    Foreground="white"
-                    Cursor="Hand"
-                    FontSize="20"
-                    FontWeight="Bold"
-                    Margin="267,0,0,0" Grid.Column="2" Click="btn_Click"
+                    
+                    
+                    
+                    
+                   
+                    Style="{StaticResource functionButton}"
+                    Margin="201,0,0,0" Grid.Column="3" Click="btn_Click"
                     Command="{Binding ModifyBill}">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="{StaticResource color1}" />
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource color10}"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="{StaticResource color10}"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
+                <TextBlock Style="{StaticResource functionButtonText}">Sửa</TextBlock>
 
             </Button>
 

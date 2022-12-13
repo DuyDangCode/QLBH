@@ -24,7 +24,12 @@ namespace QLBH
         {
             InitializeComponent();
             //listProduct.ItemsSource = a.produces;
-            FilterBy.ItemsSource = new string[] { "ID", "Tên sản phẩm", "Giá" };
+            //FilterBy.ItemsSource = new string[] { "ID", "Tên sản phẩm", "Giá" };
+        }
+
+        private void btn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
         //public Predicate<object> GetFilter()
         //{
