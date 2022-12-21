@@ -10,7 +10,7 @@ namespace QLBH.Models
     {
         public string Name { get; set; }
         public string Id { get; set; }
-        public long Price { get; set; }
+        public double Price { get; set; }
         public System.DateTime Date { get; set; }
         public int InitialAmount { get; set; }
         public int CurrentAmount { get; set; }

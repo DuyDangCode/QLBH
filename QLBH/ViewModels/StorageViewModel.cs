@@ -13,7 +13,7 @@ namespace QLBH.ViewModels
 {
     public class StorageViewModel : ViewModelBase
     {
-        public List<ProductModel> produces;
+        private List<ProductModel> _produces;
 
         
 
@@ -23,6 +23,7 @@ namespace QLBH.ViewModels
         private string _id;
         private string _name;
        
+        public List<ProductModel> Produces { get => _produces; set { _produces = value; OnPropertyChanged(nameof(Produces)); }  }
         public ProductModel SelectecItems { get => _SelectecItems; set { _SelectecItems = value; OnPropertyChanged(nameof(SelectecItems)); } }
         public string ID_SelectecItems { get => _ID_SelectecItems; set { _ID_SelectecItems = value; OnPropertyChanged(nameof(ID_SelectecItems)); } }
         public string Name_SelectecItems { get => _Name_SelectecItems; set { _Name_SelectecItems = value; OnPropertyChanged(nameof(Name_SelectecItems)); } }
@@ -30,7 +31,7 @@ namespace QLBH.ViewModels
         public string id { get => _id; set { _id = value; OnPropertyChanged(nameof(id));  }  }
         public string name { get => _name; set { _name = value; OnPropertyChanged(nameof(name)); } }
 
-        private ViewModelBase _currentChildView;
+        //private ViewModelBase _currentChildView;
 
         public ICommand AddProducts{get;set;}
         public ICommand FindProducts{get;set;}
@@ -106,7 +107,7 @@ namespace QLBH.ViewModels
         public StorageViewModel()
         {
             ProductRepository p = new ProductRepository();
-            produces = p.GetByAll();
+            Produces = p.GetByAll();
 
             AddProducts = new ViewModelCommand(ExecuteAddProducts, CanExecuteAddProducts);
             ModifyProducts = new ViewModelCommand(ExecuteModifyProducts, CanExecuteModifyProducts);
@@ -116,13 +117,13 @@ namespace QLBH.ViewModels
 
         }
 
-        public void loadData()
-        {
-            ProductRepository p = new ProductRepository();
-            produces = p.GetByAll();
+        //public void loadData()
+        //{
+        //    ProductRepository p = new ProductRepository();
+        //    produces = p.GetByAll();
 
 
-        }
+        //}
 
    
 

@@ -85,7 +85,10 @@
             <ListView Name="listProduct"
                   Margin="2,20,2,0"
                   SelectedItem= "{Binding SelectedUser, Mode=OneWayToSource}"
-                  BorderBrush="Transparent">
+                  Background="Transparent"
+                  Foreground="White"
+                  BorderThickness="0"
+                  ItemsSource="{Binding Users}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" Width="300" DisplayMemberBinding="{Binding Id}"></GridViewColumn>

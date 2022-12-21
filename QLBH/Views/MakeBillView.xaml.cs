@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using QLBH.ViewModels;
+using QLBH.Repositories;
 
 namespace QLBH
 {
@@ -23,6 +25,16 @@ namespace QLBH
         public MakeBillView()
         {
             InitializeComponent();
+           
+
         }
+
+        //private void namesCbb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    ProductRepository pd = new ProductRepository();
+        //    //priceTb.Text = pd.GetPriceByName(namesCbb.Text).ToString();
+        //    //priceTb.Text = namesCbb.Text;
+
+        //}
     }
 }

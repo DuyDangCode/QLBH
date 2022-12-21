@@ -26,13 +26,13 @@ namespace QLBH
         {
             InitializeComponent();
             //StorageViewModel a = new StorageViewModel();
-            UserManagementViewModel userManagementViewModel = new UserManagementViewModel();
+            //UserManagementViewModel userManagementViewModel = new UserManagementViewModel();
 
             //string ImagePath = @"D:\C# Assignment\DoAn\QLBH\QLBH\Images\pd1.jpg";
 
 
 
-            listProduct.ItemsSource = userManagementViewModel.Users;
+            //listProduct.ItemsSource = userManagementViewModel.Users;
             FilterBy.ItemsSource = new string[] { "ID", "Tên tài khoản "};
         }
 

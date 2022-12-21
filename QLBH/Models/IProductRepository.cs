@@ -10,13 +10,18 @@ namespace QLBH.Models
     {
         ProductModel GetProductById(int id);
         ProductModel GetProductByName(string name);
+        double GetPriceByName(string name);
 
         void Add(ProductModel product);
         void Modify(ProductModel product);
         void Remove(string id);
 
-        List<ProductModel> Find(string id, string name);
+        List<string> getNameAll();
+
+        //List<ProductModel> Find(string id, string name);
         List<ProductModel> GetByAll();
+
+
 
 
 

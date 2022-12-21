@@ -6,43 +6,39 @@ using System.Threading.Tasks;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System.Windows.Media;
+using QLBH.Repositories;
+using System.Windows.Input;
+using QLBH.CustomControls.Chart;
 
 namespace QLBH.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-        public string[] Labels { get; set; }
-        public Func<double, string> YFormatter { get; set; }
-        public SeriesCollection SeriesCollection { get; set; }
+        private string _numberOfOrders;
+        private string _revOfDay;
+
+        private ViewModelBase _currentChart;
+
+       
+
+        public string NumOfOrders { get  { return _numberOfOrders; } set { _numberOfOrders = value; OnPropertyChanged(nameof(NumOfOrders)); } }
+        public string RevOfDay { get { return _revOfDay; } set { _revOfDay = value; OnPropertyChanged(nameof(RevOfDay)); } }
+
+        public ViewModelBase CurrentChart { get { return _currentChart; } set { _currentChart = value; OnPropertyChanged(nameof(CurrentChart)); } }
+
+        public ICommand ShowYesterdayChart { get; }
+        public ICommand ShowMonthChart { get; }
+        public ICommand ShowLastMonthChart { get; }
+
         public HomeViewModel()
         {
+
+            BillRepository billRepository = new BillRepository();
+
             
 
-            SeriesCollection = new SeriesCollection
-            {
-                new LineSeries
-                {
-                    Title = "Series 1",
-                    Values = new ChartValues<double> { 4, 6, 5, 2 ,4 }
-                },
-                new LineSeries
-                {
-                    Title = "Series 2",
-                    Values = new ChartValues<double> { 6, 7, 3, 4 ,6 },
-                    PointGeometry = null
-                },
-                new LineSeries
-                {
-                    Title = "Series 3",
-                    Values = new ChartValues<double> { 4,2,7,2,7 },
-                    PointGeometry = DefaultGeometries.Square,
-                    PointGeometrySize = 15
-                }
-            };
-
-            Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
-            YFormatter = value => value.ToString("C");
-
+            NumOfOrders = billRepository.getNumOfOrders().ToString();
+            RevOfDay = billRepository.getRevOfDay().ToString();
             //modifying the series collection will animate and update the chart
             //SeriesCollection.Add(new LineSeries
             //{
@@ -57,8 +53,28 @@ namespace QLBH.ViewModels
             ////modifying any series values will also animate and update the chart
             //SeriesCollection[3].Values.Add(5d);
 
-            
+            ShowYesterdayChart = new ViewModelCommand(ExecuteShowYesterdayChart);
+            ShowMonthChart = new ViewModelCommand(ExecuteShowMonthChartCommand);
+            ShowLastMonthChart = new ViewModelCommand(ExecuteShowLastMonthChart);
+
+            ExecuteShowYesterdayChart(null);
+
         }
 
+        private void ExecuteShowYesterdayChart(object obj)
+        {
+            CurrentChart = new YesterdayChartViewModel();
+            
+        }
+        private void ExecuteShowMonthChartCommand(object obj)
+        {
+            CurrentChart = new MonthChartViewModel();
+
+        }
+        private void ExecuteShowLastMonthChart(object obj)
+        {
+            CurrentChart = new LastMonthChartViewModel();
+
+        }
     }
 }

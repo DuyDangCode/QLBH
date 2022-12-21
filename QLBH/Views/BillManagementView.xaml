@@ -125,7 +125,9 @@
             <ListView Name="listProduct"
                   Margin="2,20,2,0"
                   SelectedItem= "{Binding SelectecItems, Mode=OneWayToSource}"  
-                  BorderBrush="Transparent">
+                  Background="Transparent"
+                  Foreground="White"
+                  BorderThickness="0">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding Id}"></GridViewColumn>

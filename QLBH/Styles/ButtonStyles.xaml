@@ -38,6 +38,27 @@
     </Style>
 
 
+    <!--Profile Button-->
+    <Style x:Key="profileButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Margin" Value="10,10,10,10"/>
+                <Setter Property="Background" Value="{StaticResource color1}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    
     <!--Menu button icon-->
     <Style x:Key="menuButtonIcon" TargetType="fa:IconImage">
         <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
@@ -96,6 +117,14 @@
             </Trigger>
             
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="textDashboard" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource color1}"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="50"/>
+
     </Style>
     
     <!--ListView-->

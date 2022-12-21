@@ -77,10 +77,15 @@
             <ListView Name="listProduct"
                   Margin="2,20,2,0"
                   SelectedItem= "{Binding SelectecItems, Mode=OneWayToSource}"  
-                  BorderBrush="Transparent">
+                  
+                  ItemsSource="{Binding Produces}"
+                  Background="Transparent"
+                  Foreground="White"
+                  
+                  BorderThickness="0">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                        <GridViewColumn Header="Id" Width="auto" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
                         <GridViewColumn Header="Tên Sản Phẩm" Width="auto" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
                         <GridViewColumn Header="Giá" Width="auto" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
                     </GridView>

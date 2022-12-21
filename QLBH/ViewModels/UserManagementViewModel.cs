@@ -13,7 +13,7 @@ namespace QLBH.ViewModels
     
     public class UserManagementViewModel: ViewModelBase
     {
-        public List<UserModel> Users;
+        private List<UserModel> _users;
         private string _id;
         private UserModel _selectedUser;
 
@@ -21,6 +21,8 @@ namespace QLBH.ViewModels
         public ICommand AddUser { get; set; }
 
         public ICommand RemoveUser { get; set; }
+
+        public List<UserModel> Users {get=> _users; set { _users = value; OnPropertyChanged(nameof(Users)); }  }
 
         public string UserId { get => _id; set { _id = value; OnPropertyChanged(nameof(UserId)); }  }
 

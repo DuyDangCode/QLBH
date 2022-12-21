@@ -98,12 +98,12 @@ namespace QLBH.ViewModels
         public MainViewModel()
         {
             userRepository = new UserRepository();
-
             CurrentUserAccount = new UserAccountModel();
             LoadCurrentUserData();
+
             //Initialize commands
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
-            ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
+            //ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
             ShowStorageViewCommand = new ViewModelCommand(ExecuteShowStorageViewCommand, CanExecuteShowStorageViewCommand);
             ShowUserMangementViewCommand = new ViewModelCommand(ExecuteShowUserMangementViewCommand, CanExecuteShowUserMangementViewCommand);
             ShowBillManagementViewCommand= new ViewModelCommand(ExecuteShowBillManagementViewCommand);

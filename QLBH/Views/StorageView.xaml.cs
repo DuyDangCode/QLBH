@@ -29,13 +29,13 @@ namespace QLBH
         public StorageView()
         {
             InitializeComponent();
-            StorageViewModel a = new StorageViewModel();
+            //StorageViewModel a = new StorageViewModel();
 
             //string ImagePath = @"D:\C# Assignment\DoAn\QLBH\QLBH\Images\pd1.jpg";
 
             
 
-            listProduct.ItemsSource = a.produces;
+            //listProduct.ItemsSource = a.produces;
             FilterBy.ItemsSource = new string[] { "ID", "Tên sản phẩm", "Giá" };
 
             
@@ -98,18 +98,5 @@ namespace QLBH
         }
 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-            
-            
-        }
-
-        private void btn_Click(object sender, RoutedEventArgs e)
-        {
-
-            
-
-        }
     }
 }

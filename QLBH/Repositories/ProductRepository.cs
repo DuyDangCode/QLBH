@@ -104,30 +104,25 @@ namespace QLBH.Repositories
             return products;
         }
 
-        public List<ProductModel> Find(string id, string name)
+        public List<string> getNameAll()
         {
-            List<ProductModel> products = new List<ProductModel>();
-
-
+            List<String> namesPd =  new List<string>();
             using (var connection = GetConnection())
             using (SqlDataAdapter adapter = new SqlDataAdapter())
             using (var command = new SqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select * from [Product] where ID_PRODUCT = '" + id + "' or  NAME_PRODUCT = '" + name + "'";
+                command.CommandText = "select NAME_PRODUCT from [Product] where STATE = 0";
                 adapter.SelectCommand = command;
                 using var SqlReader = command.ExecuteReader();
                 if (SqlReader.HasRows)
                 {
                     while (SqlReader.Read())
                     {
-                        ProductModel pd = new ProductModel();
-                        pd.Id = Convert.ToString(SqlReader["ID_PRODUCT"]);
-                        pd.Name = Convert.ToString(SqlReader["NAME_PRODUCT"]);
-                        pd.Price = Convert.ToInt64(SqlReader["PRICE"]);
+                        
 
-                        products.Add(pd);
+                        namesPd.Add(Convert.ToString(SqlReader["NAME_PRODUCT"]));
                     }
 
                 }
@@ -138,8 +133,79 @@ namespace QLBH.Repositories
                 }
             }
 
-            return products;
+
+            return namesPd;
+
         }
+
+        public double GetPriceByName(string name)
+        {
+            double price = 0;
+
+            using (var connection = GetConnection())
+            using (SqlDataAdapter adapter = new SqlDataAdapter())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select PRICE from [Product] where STATE = 0 and NAME_PRODUCT = '"+name+"'";
+
+                adapter.SelectCommand = command;
+                using var SqlReader = command.ExecuteReader();
+                if (SqlReader.HasRows)
+                {
+                    while (SqlReader.Read())
+                    {
+
+
+                        price = Convert.ToDouble(SqlReader["PRICE"]);
+                    }
+
+                }
+
+            }
+
+
+            return price;
+
+
+        }
+        //public List<ProductModel> Find(string id, string name)
+        //{
+        //    List<ProductModel> products = new List<ProductModel>();
+
+
+        //    using (var connection = GetConnection())
+        //    using (SqlDataAdapter adapter = new SqlDataAdapter())
+        //    using (var command = new SqlCommand())
+        //    {
+        //        connection.Open();
+        //        command.Connection = connection;
+        //        command.CommandText = "select * from [Product] where ID_PRODUCT = '" + id + "' or  NAME_PRODUCT = '" + name + "'";
+        //        adapter.SelectCommand = command;
+        //        using var SqlReader = command.ExecuteReader();
+        //        if (SqlReader.HasRows)
+        //        {
+        //            while (SqlReader.Read())
+        //            {
+        //                ProductModel pd = new ProductModel();
+        //                pd.Id = Convert.ToString(SqlReader["ID_PRODUCT"]);
+        //                pd.Name = Convert.ToString(SqlReader["NAME_PRODUCT"]);
+        //                pd.Price = Convert.ToInt64(SqlReader["PRICE"]);
+
+        //                products.Add(pd);
+        //            }
+
+        //        }
+        //        else
+        //        {
+
+
+        //        }
+        //    }
+
+        //    return products;
+        //}
     }
 
 }

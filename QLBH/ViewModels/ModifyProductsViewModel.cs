@@ -20,14 +20,14 @@ namespace QLBH.ViewModels
 
         private string _name;
         private int _amount;
-        private long _price;
+        private double _price;
         private string _inputTime;
         private DateTime _expiryTime;
         private string _supply;
         private string _id;
 
         public string name { get => _name; set { _name = value; OnPropertyChanged(nameof(name)); } }
-        public long price { get => _price; set { _price = value; OnPropertyChanged(nameof(price)); } }
+        public double price { get => _price; set { _price = value; OnPropertyChanged(nameof(price)); } }
         public string id { get => _id; set { _id = value; OnPropertyChanged(nameof(id)); } }
 
         
@@ -38,7 +38,7 @@ namespace QLBH.ViewModels
             modifyProductsView.Show();
 
             name = modifyProductsView.name.Text;
-            price = Convert.ToInt64(modifyProductsView.price.Text);
+            price = Convert.ToDouble(modifyProductsView.price.Text);
         }
 
         public ModifyProductsViewModel()
