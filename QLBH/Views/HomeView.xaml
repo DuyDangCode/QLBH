@@ -51,7 +51,7 @@
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="2" Height="150" Width="250">
-                <Calendar/>
+                <Calendar SelectedDate="{Binding DateIschoosing}"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">

@@ -76,41 +76,18 @@
 
 
 
-            <Button Width="100"
-                    HorizontalAlignment="Left"
-                    BorderThickness="0"
-                    Content="Xóa"
-                    Foreground="white"
-                    Cursor="Hand"
-                    FontSize="20"
-                    FontWeight="Bold"
+            <Button Style="{StaticResource functionButton}"
                     Margin="329,0,0,0" Grid.Column="3"
                     Command="{Binding RemoveBill}">
-
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="{StaticResource color1}" />
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource color10}"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
+                <TextBlock Style="{StaticResource functionButtonText}">Xóa</TextBlock>
             </Button>
 
             <Button x:Name="btn"
                     Width="100"
-                    
-                    
-                    
-                    
-                   
                     Style="{StaticResource functionButton}"
                     Margin="201,0,0,0" Grid.Column="3" Click="btn_Click"
                     Command="{Binding ModifyBill}">
                 <TextBlock Style="{StaticResource functionButtonText}">Sửa</TextBlock>
-
             </Button>
 
 

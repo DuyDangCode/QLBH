@@ -12,7 +12,7 @@
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="220"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -26,7 +26,8 @@
                     <RowDefinition Height="20"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    
+                    <RowDefinition></RowDefinition>
+
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <TextBlock  Foreground="White">Thông tin hóa đơn</TextBlock>
@@ -43,6 +44,14 @@
                     <TextBlock Foreground="White">Ngày hóa đơn</TextBlock>
                     <TextBox Height="20" Width="250" HorizontalAlignment="Left" Text="{Binding Date}"></TextBox>
                 </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Foreground="White">Thành tiền:</TextBlock>
+                    <TextBlock Grid.Column="1" FontSize="20" Foreground="Red" Text="{Binding BillPrice}"></TextBlock>
+                </Grid>
             </Grid>
             <!---->
             <Grid Grid.Column="1">
@@ -50,19 +59,19 @@
                     <RowDefinition Height="20"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
                     <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <TextBlock  Foreground="White">Chi tiết hóa đơn</TextBlock>
                 </Grid>
                 <Grid Grid.Row="1">
                     <TextBlock Foreground="White">Tên sản phẩm</TextBlock>
-                    <ComboBox  Height="20" Width="250" HorizontalAlignment="Left" ItemsSource="{Binding NamePds}" SelectedIndex="0" ></ComboBox>
+                    <ComboBox  Height="20" Width="250" HorizontalAlignment="Left" ItemsSource="{Binding NamePds}" SelectedIndex="0" SelectedItem="{Binding Name}" ></ComboBox>
                 </Grid>
                 <Grid Grid.Row="2">
                     <TextBlock Foreground="White">Đơn giá</TextBlock>
-                    <TextBox Height="20" Width="250" HorizontalAlignment="Left" Text="{Binding Price, Mode=TwoWay}"></TextBox>
+                    <TextBox Name="priceTb" Height="20" Width="250" HorizontalAlignment="Left" Text="{Binding Price}"></TextBox>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
@@ -70,12 +79,15 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <TextBlock Foreground="White">Số lượng</TextBlock>
-                        <TextBox Height="20" Width="150" HorizontalAlignment="Left"></TextBox>
-                    </Grid>
+                        <TextBlock Width="100"  HorizontalAlignment="Left" Foreground="White">Số lượng:</TextBlock>
+                        <TextBox Height="20" Width="60" VerticalAlignment="Top" HorizontalAlignment="Center" Text="{Binding Amount}"></TextBox>
+                        <TextBlock Width="20" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Margin="155,0,0,0" RenderTransformOrigin="0.0,0.446">sp</TextBlock>
+
+                    </Grid>                             
                     <Grid Grid.Column="1">
-                        <TextBlock Foreground="White">Khuyến mãi</TextBlock>
-                        <TextBox Height="20" Width="150" HorizontalAlignment="Left"></TextBox>
+                        <TextBlock  Width="100" HorizontalAlignment="Left" Foreground="White">Khuyến mãi:</TextBlock>
+                        <TextBox VerticalAlignment="Top" HorizontalAlignment="Center" Height="20" Width="60"  Text="{Binding Discount}" RenderTransformOrigin="-2.014,1.046"></TextBox>
+                        <TextBlock Width="20" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Margin="155,0,0,0" RenderTransformOrigin="0.0,0.446">%</TextBlock>
                     </Grid>
 
                 </Grid>
@@ -86,37 +98,33 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Height="20" Width="100" Content="Thêm" Command="{Binding Add}"></Button>
-                    <Button Grid.Column="1" Height="20" Width="100" Content="Xóa"></Button>
-                    <Button Grid.Column="2" Height="20" Width="100" Content="Thanh toán"></Button>
+                    <Button Grid.Column="1" Height="20" Width="100" Content="Xóa" Command="{Binding Delete}"></Button>
+                    <Button Grid.Column="2" Height="20" Width="100" Content="Thanh toán" Command="{Binding Payment}"></Button>
                 </Grid>
             </Grid>
         </Grid>
 
         <Grid Grid.Row="1">
+
             <!--<Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>-->
-            <ListView Name="listProduct"
-                  Margin="2,20,2,0"
-                  SelectedItem= "{Binding SelectecItems, Mode=OneWayToSource}"  
-                  BorderBrush="Transparent" Grid.ColumnSpan="2"
-                  ItemsSource="{Binding listPD}"
->
+
+            <ListView ItemsSource="{Binding ListPD, Mode=TwoWay}"
+                      SelectedItem= "{Binding SelectecItems, Mode=OneWayToSource}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding id_pdInBill}"></GridViewColumn>
-                        <GridViewColumn Header="Tên Sản Phẩm" Width="auto" DisplayMemberBinding="{Binding name_pdInBill}"></GridViewColumn>
-                        <GridViewColumn Header="Số Lượng" Width="auto" DisplayMemberBinding="{Binding amount_pdInBill}"></GridViewColumn>
-                        <GridViewColumn Header="Thành Tiền" Width="auto" DisplayMemberBinding="{Binding price_pdInBill}"></GridViewColumn>
+                        <GridViewColumn Header="Id" Width="auto" DisplayMemberBinding="{Binding id_pdInBill}"></GridViewColumn>
+                        <GridViewColumn Header="Tên Sản Phẩm" Width="150" DisplayMemberBinding="{Binding name_pdInBill}"></GridViewColumn>
+                        <GridViewColumn Header="Số lượng" Width="100" DisplayMemberBinding="{Binding amount_pdInBill}"></GridViewColumn>
+                        <GridViewColumn Header="Khuyến mãi" Width="100" DisplayMemberBinding="{Binding discount_pdInBill}"></GridViewColumn>
+                        <GridViewColumn Header="Tổng tiền" Width="100" DisplayMemberBinding="{Binding price_pdInBill}"></GridViewColumn>
                     </GridView>
-
                 </ListView.View>
-                <!--<ListView.Template>
-                    
-                </ListView.Template>-->
-
             </ListView>
+
+
         </Grid>
     </Grid>
 </UserControl>

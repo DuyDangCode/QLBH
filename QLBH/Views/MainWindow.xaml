@@ -31,6 +31,10 @@
     <Window.Visibility>
         <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
     </Window.Visibility>
+    
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding LoginCommand}" Key="Enter"/>
+    </Window.InputBindings>
 
     <Border CornerRadius="12">
         <Border.Background>
@@ -233,4 +237,5 @@
             </Grid>
         </Border>
     </Border>
+    
 </Window>

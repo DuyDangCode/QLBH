@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using QLBH.Models;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Collections.ObjectModel;
+using System.Threading;
 
 namespace QLBH.Repositories
 {
@@ -186,6 +188,39 @@ namespace QLBH.Repositories
             }
 
             return data;
+        }
+
+
+        public bool payment(ObservableCollection<pdInBill> _listPD, string idUser, double price)
+        {
+            bool result = false;
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+            string time = DateTime.Now.ToString("hh:mm:ss");
+            Guid g = Guid.NewGuid();
+
+
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+
+                command.CommandText = "INSERT INTO dbo.BILL VALUES ('"+g+"','"+date+"','"+idUser+"',"+price+",NULL)";
+                //MessageBox.Show("INSERT INTO dbo.BILL VALUES (" + g + ", '" + date + "', " + idUser + "," + price + ",'" + time + "')");
+
+                
+                command.ExecuteNonQuery();
+                foreach (pdInBill i in _listPD)
+                {
+                    command.CommandText = "INSERT INTO dbo.DETAIL_BILL VALUES(NEWID(),'"+g+"','"+i.id_pdInBill+"',"+i.amount_pdInBill+","+i.price_pdInBill+","+i.discount_pdInBill+")";
+                    command.ExecuteNonQuery();
+                }
+                result = true;
+
+            }
+
+            return result;
+
         }
     }
 }

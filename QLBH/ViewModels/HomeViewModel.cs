@@ -19,12 +19,17 @@ namespace QLBH.ViewModels
 
         private ViewModelBase _currentChart;
 
-       
+        private string _dateIschoosing;
+
+
+
 
         public string NumOfOrders { get  { return _numberOfOrders; } set { _numberOfOrders = value; OnPropertyChanged(nameof(NumOfOrders)); } }
         public string RevOfDay { get { return _revOfDay; } set { _revOfDay = value; OnPropertyChanged(nameof(RevOfDay)); } }
 
         public ViewModelBase CurrentChart { get { return _currentChart; } set { _currentChart = value; OnPropertyChanged(nameof(CurrentChart)); } }
+        public string DateIschoosing { get { return _dateIschoosing; } set { _dateIschoosing = value; OnPropertyChanged(nameof(DateIschoosing)); } }
+
 
         public ICommand ShowYesterdayChart { get; }
         public ICommand ShowMonthChart { get; }

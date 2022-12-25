@@ -131,4 +131,12 @@
     <Style x:Key="listView" TargetType="ListView">
         
     </Style>
+
+    <Style x:Key="textAddProduct" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontSize" Value="15"/>
+
+
+    </Style>
 </ResourceDictionary>

@@ -198,8 +198,26 @@
                         <!--MenuButton-->
                         <StackPanel>
 
-                            <Grid Height="100" Margin="0,20,0,30" Background="Transparent">
-                                <Image Height="90" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding CurrentUserAccount.ProfilePicture}"></Image>
+                            <Grid Height="100" Margin="0,10,0,30" Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Ellipse Grid.Column="0" Height="80" Width="80">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding CurrentUserAccount.ProfilePicture}"></ImageBrush>
+
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <TextBlock Grid.Column="1" Text="{Binding CurrentUserAccount.Username}" Foreground="White" FontSize="15" FontWeight="Medium" Padding="10,50,0,0"></TextBlock>
+
+                                </Grid>
+                                <TextBlock Grid.Row="1" Text="{Binding CurrentUserAccount.DisplayName}" FontWeight="Bold" Foreground="White" FontSize="10" Padding="10,0,0,0"></TextBlock>
                                 
                                 
                                 <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="30" Text="{Binding CurrentUserAccount.DisplayName}" FontSize="15" Foreground="White" FontStyle="Normal" FontWeight="Light"></TextBlock>-->

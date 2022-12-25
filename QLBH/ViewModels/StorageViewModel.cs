@@ -60,9 +60,8 @@ namespace QLBH.ViewModels
         {
             
             AddProductsView addPD = new AddProductsView();
-
             addPD.Show();
-
+            
         }
 
 
@@ -77,7 +76,9 @@ namespace QLBH.ViewModels
         {
             ProductRepository repository = new ProductRepository();
             repository.Remove(SelectecItems.Id);
-            MessageBox.Show("Đã xóa thành công");
+            
+            Produces = repository.GetByAll();
+            //MessageBox.Show("Đã xóa thành công");
         }
 
         private bool CanExecuteModifyProducts(object obj)

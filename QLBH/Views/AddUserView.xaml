@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:QLBH"
         xmlns:viewModel="clr-namespace:QLBH.ViewModels"
         mc:Ignorable="d"
-        Title="AddUserView" Height="450" Width="800">
+        Background="Transparent"
+        Title="Thêm người dùng" Icon="D:\C# Assignment\DoAn\QLBH\QLBH\Images\image_logo.png" Height="450" Width="800">
 
     <Window.DataContext>
         <viewModel:AddUserViewModel/>

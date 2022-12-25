@@ -12,6 +12,8 @@ namespace QLBH.Models
         ProductModel GetProductByName(string name);
         double GetPriceByName(string name);
 
+        string GetIdByName(string name);
+
         void Add(ProductModel product);
         void Modify(ProductModel product);
         void Remove(string id);

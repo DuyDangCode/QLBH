@@ -26,7 +26,7 @@ namespace QLBH
 
         ~Dashboard()
         {
-            MessageBox.Show("Da huy");
+            
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

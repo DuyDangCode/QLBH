@@ -13,6 +13,7 @@ namespace QLBH.ViewModels
     public class AddProductsViewModel : ViewModelBase
     {
         public ICommand Add { get; set; }
+       
         private string _name;
         private int _amount;
         private long _price;
@@ -42,7 +43,7 @@ namespace QLBH.ViewModels
                 ProductRepository repository = new ProductRepository();
                 repository.Add(pd);
                 MessageBox.Show("Đã thêm thành công");
-                StorageViewModel storageViewModel = new StorageViewModel();
+                //StorageViewModel storageViewModel = new StorageViewModel();
                 
                 
 

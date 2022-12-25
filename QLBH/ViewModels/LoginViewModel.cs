@@ -91,6 +91,8 @@ namespace QLBH.ViewModels
         public LoginViewModel()
         {
             userRepository = new UserRepository();
+            Username = "admin";
+            
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
         }

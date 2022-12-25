@@ -25,6 +25,8 @@ namespace QLBH.Repositories
 
         public void Add(ProductModel pd)
         {
+
+            
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
@@ -148,7 +150,7 @@ namespace QLBH.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select PRICE from [Product] where STATE = 0 and NAME_PRODUCT = '"+name+"'";
+                command.CommandText = "select PRICE from [Product] where STATE = 0 and NAME_PRODUCT = N'"+name+"'";
 
                 adapter.SelectCommand = command;
                 using var SqlReader = command.ExecuteReader();
@@ -170,42 +172,38 @@ namespace QLBH.Repositories
 
 
         }
-        //public List<ProductModel> Find(string id, string name)
-        //{
-        //    List<ProductModel> products = new List<ProductModel>();
+        public string GetIdByName(string name)
+        {
+            string id = null;
+
+            using (var connection = GetConnection())
+            using (SqlDataAdapter adapter = new SqlDataAdapter())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select ID_PRODUCT from [Product] where STATE = 0 and NAME_PRODUCT = N'" + name + "'";
+
+                adapter.SelectCommand = command;
+                using var SqlReader = command.ExecuteReader();
+                if (SqlReader.HasRows)
+                {
+                    while (SqlReader.Read())
+                    {
 
 
-        //    using (var connection = GetConnection())
-        //    using (SqlDataAdapter adapter = new SqlDataAdapter())
-        //    using (var command = new SqlCommand())
-        //    {
-        //        connection.Open();
-        //        command.Connection = connection;
-        //        command.CommandText = "select * from [Product] where ID_PRODUCT = '" + id + "' or  NAME_PRODUCT = '" + name + "'";
-        //        adapter.SelectCommand = command;
-        //        using var SqlReader = command.ExecuteReader();
-        //        if (SqlReader.HasRows)
-        //        {
-        //            while (SqlReader.Read())
-        //            {
-        //                ProductModel pd = new ProductModel();
-        //                pd.Id = Convert.ToString(SqlReader["ID_PRODUCT"]);
-        //                pd.Name = Convert.ToString(SqlReader["NAME_PRODUCT"]);
-        //                pd.Price = Convert.ToInt64(SqlReader["PRICE"]);
+                        id = Convert.ToString(SqlReader["ID_PRODUCT"]);
+                    }
 
-        //                products.Add(pd);
-        //            }
+                }
 
-        //        }
-        //        else
-        //        {
+            }
 
 
-        //        }
-        //    }
+            return id;
 
-        //    return products;
-        //}
+
+        }
     }
 
 }

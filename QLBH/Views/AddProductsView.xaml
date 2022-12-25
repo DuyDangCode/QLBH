@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:QLBH"
         xmlns:viewModel="clr-namespace:QLBH.ViewModels"
         mc:Ignorable="d"
-        Title="AddProductsView" Height="500" Width="650">
+        Background="Transparent"
+        Title="Thêm sản phẩm" Icon="D:\C# Assignment\DoAn\QLBH\QLBH\Images\image_logo.png" Height="500" Width="650">
    
     <Window.DataContext>
         <viewModel:AddProductsViewModel/>
-        
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -25,8 +25,7 @@
         <Grid Grid.Row="0">
             
             <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0">
-                <TextBlock Height="20" Width="200" Foreground="Black"
-                           FontWeight="Medium">
+                <TextBlock Style="{StaticResource textAddProduct}">
                     Tên sản phẩm
                 </TextBlock>
                 <TextBox Height="20" Width="200" Text="{Binding name, Mode=TwoWay}">
@@ -35,8 +34,7 @@
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Left" Margin="210,0,0,0">
-                <TextBlock Height="20" Width="200" Foreground="Black"
-                           FontWeight="Medium">
+                <TextBlock Style="{StaticResource textAddProduct}">
                     Giá
                 </TextBlock>
                 <TextBox Height="20" Width="200" Text="{Binding price, Mode=TwoWay}">
@@ -47,8 +45,7 @@
 
         <Grid Grid.Row="1">
             <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0">
-                <TextBlock Height="20" Width="200" Foreground="Black"
-                           FontWeight="Medium">
+                <TextBlock Style="{StaticResource textAddProduct}">
                     Số lượng 
                 </TextBlock>
                 <TextBox Height="20" Width="200">
@@ -56,8 +53,7 @@
                 </TextBox>
             </StackPanel>
             <StackPanel HorizontalAlignment="Left" Margin="210,0,0,0">
-                <TextBlock Height="20" Width="200" Foreground="Black"
-                           FontWeight="Medium">
+                <TextBlock Style="{StaticResource textAddProduct}">
                     Đơn vị
                 </TextBlock>
                 <TextBox Height="20" Width="200">
@@ -66,8 +62,7 @@
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Left" Margin="415,0,0,0">
-                <TextBlock Height="20" Width="200" Foreground="Black"
-                           FontWeight="Medium">
+                <TextBlock Style="{StaticResource textAddProduct}">
                     Ghi chú
                 </TextBlock>
                 <TextBox Height="20" Width="200">
@@ -78,8 +73,7 @@
 
         <Grid Grid.Row="2">
             <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0">
-                <TextBlock Height="20" Width="200" Foreground="Black"
-                           FontWeight="Medium">
+                <TextBlock Style="{StaticResource textAddProduct}">
                     Ngày nhập hàng
                 </TextBlock>
                 <TextBox Height="20" Width="200">
@@ -87,8 +81,7 @@
                 </TextBox>
             </StackPanel>
             <StackPanel HorizontalAlignment="Left" Margin="210,0,0,0">
-                <TextBlock Height="20" Width="200" Foreground="Black"
-                           FontWeight="Medium">
+                <TextBlock Style="{StaticResource textAddProduct}">
                     Hạn sử dụng
                 </TextBlock>
                 <TextBox Height="20" Width="200">
@@ -97,8 +90,7 @@
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Left" Margin="415,0,0,0">
-                <TextBlock Height="20" Width="200" Foreground="Black"
-                           FontWeight="Medium">
+                <TextBlock Style="{StaticResource textAddProduct}">
                     Nhà sản xuất
                 </TextBlock>
                 <TextBox Height="20" Width="200">
@@ -109,8 +101,7 @@
 
         <Grid Grid.Row="3">
             <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0">
-                <TextBlock Height="20" Width="200" Foreground="Black"
-                           FontWeight="Medium">
+                <TextBlock Style="{StaticResource textAddProduct}">
                     File ảnh
                 </TextBlock>
                 <TextBox Height="20" Width="200">
@@ -120,7 +111,7 @@
         </Grid>
 
         <Grid Grid.Row="4">
-            <Button Width="200" Height="50" Content="Thêm" Command="{Binding Add}"></Button>
+            <Button HorizontalAlignment="Center" Width="200" Height="50" Foreground="White" FontSize="30" FontWeight="Bold" Style="{StaticResource functionButton}" Content="Thêm" Command="{Binding Add}"></Button>
         </Grid>
         
     </Grid>

@@ -25,16 +25,9 @@ namespace QLBH
         public MakeBillView()
         {
             InitializeComponent();
-           
+
 
         }
 
-        //private void namesCbb_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    ProductRepository pd = new ProductRepository();
-        //    //priceTb.Text = pd.GetPriceByName(namesCbb.Text).ToString();
-        //    //priceTb.Text = namesCbb.Text;
-
-        //}
     }
 }
