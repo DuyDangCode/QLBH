@@ -26,46 +26,57 @@
             
             <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0">
                 <TextBlock Style="{StaticResource textAddProduct}">
-                    Tên sản phẩm
+                    Mã sản phẩm
                 </TextBlock>
-                <TextBox Height="20" Width="200" Text="{Binding name, Mode=TwoWay}">
+                <TextBox Height="20" Width="200" Text="{Binding idPd, Mode=TwoWay}">
 
                 </TextBox>
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Left" Margin="210,0,0,0">
                 <TextBlock Style="{StaticResource textAddProduct}">
-                    Giá
+                    Tên sản phẩm
                 </TextBlock>
-                <TextBox Height="20" Width="200" Text="{Binding price, Mode=TwoWay}">
+                <ComboBox Height="20" Width="200" ItemsSource ="{Binding namesPd}" SelectedItem="{Binding namePd}" SelectedIndex="0">
+                </ComboBox>
 
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Margin="415,0,0,0">
+                <TextBlock Style="{StaticResource textAddProduct}">
+                    Giá nhập
+                </TextBlock>
+                <TextBox Height="20" Width="200" Text="{Binding importPricePD, Mode=TwoWay}">
                 </TextBox>
+
             </StackPanel>
         </Grid>
 
         <Grid Grid.Row="1">
             <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0">
                 <TextBlock Style="{StaticResource textAddProduct}">
-                    Số lượng 
+                    % lợi nhuận 
                 </TextBlock>
                 <TextBox Height="20" Width="200">
 
                 </TextBox>
+                <TextBlock HorizontalAlignment="Left" Width="50" Foreground="White">Giá bán: </TextBlock>
+                <TextBlock Foreground="red" Text="{Binding pricePd, Mode=TwoWay}"></TextBlock>
             </StackPanel>
             <StackPanel HorizontalAlignment="Left" Margin="210,0,0,0">
                 <TextBlock Style="{StaticResource textAddProduct}">
                     Đơn vị
                 </TextBlock>
-                <TextBox Height="20" Width="200">
+                <ComboBox ItemsSource ="{Binding unitsPd, Mode=TwoWay}" Height="20" Width="200">
 
-                </TextBox>
+                </ComboBox>
+                
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Left" Margin="415,0,0,0">
                 <TextBlock Style="{StaticResource textAddProduct}">
-                    Ghi chú
+                    Số lượng
                 </TextBlock>
-                <TextBox Height="20" Width="200">
+                <TextBox Text="{Binding amountPd, Mode=TwoWay}" Height="20" Width="200">
 
                 </TextBox>
             </StackPanel>
@@ -76,26 +87,28 @@
                 <TextBlock Style="{StaticResource textAddProduct}">
                     Ngày nhập hàng
                 </TextBlock>
-                <TextBox Height="20" Width="200">
+                <DatePicker Text="{Binding importDatePd, Mode=TwoWay}"></DatePicker>
+                <!--<TextBox  Height="20" Width="200" Text="{Binding importDatePd, Mode=TwoWay}">
 
-                </TextBox>
+                </TextBox>-->
             </StackPanel>
             <StackPanel HorizontalAlignment="Left" Margin="210,0,0,0">
                 <TextBlock Style="{StaticResource textAddProduct}">
                     Hạn sử dụng
                 </TextBlock>
-                <TextBox Height="20" Width="200">
+                <DatePicker Text="{Binding expiryPD, Mode=TwoWay}"></DatePicker>
+                <!--<TextBox Height="20" Width="200" Text="{Binding expiryPD, Mode=TwoWay}">
 
-                </TextBox>
+                </TextBox>-->
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Left" Margin="415,0,0,0">
                 <TextBlock Style="{StaticResource textAddProduct}">
                     Nhà sản xuất
                 </TextBlock>
-                <TextBox Height="20" Width="200">
+                <ComboBox Height="20" Width="200" SelectedIndex="0" ItemsSource="{Binding supplies}" SelectedItem="{Binding sypplyPd}">
 
-                </TextBox>
+                </ComboBox>
             </StackPanel>
         </Grid>
 
@@ -104,14 +117,31 @@
                 <TextBlock Style="{StaticResource textAddProduct}">
                     File ảnh
                 </TextBlock>
-                <TextBox Height="20" Width="200">
 
-                </TextBox>
+                <TextBox Height="20" Width="200"></TextBox>
+                <Button Content="Load Piucture" Command="{Binding chooseImage}"/>
+                
+                
             </StackPanel>
+            <Image Margin="253,0,297,-3" Width="100" Height="100" Source="{Binding imageFile}"/>
+            <!--<StackPanel HorizontalAlignment="Left" Margin="415,0,0,0">
+                <TextBlock Style="{StaticResource textAddProduct}">
+                    Ghi chú
+                </TextBlock>
+                <TextBox Height="20" Width="200">
+                </TextBox>
+            </StackPanel>-->
         </Grid>
 
         <Grid Grid.Row="4">
-            <Button HorizontalAlignment="Center" Width="200" Height="50" Foreground="White" FontSize="30" FontWeight="Bold" Style="{StaticResource functionButton}" Content="Thêm" Command="{Binding Add}"></Button>
+            <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0">
+                <TextBlock Style="{StaticResource textAddProduct}">
+                    Ghi chú
+                </TextBlock>
+                <TextBox Height="64" Width="350" Text="{Binding notePd}">
+                </TextBox>
+            </StackPanel>
+            <Button HorizontalAlignment="Right" Margin="0,0,30,0" Width="200" Height="50" Foreground="White" FontSize="30" FontWeight="Bold" Style="{StaticResource functionButton}" Content="Thêm" Command="{Binding Add}"></Button>
         </Grid>
         
     </Grid>

@@ -15,8 +15,11 @@ namespace QLBH.Models
         public double[] getDataOfYesterday();
         public double[] getDataOfThisMonth();
         public double[] getDataOfLastMonth();
+        public double[] getDataOnDay(string day);
+        public ObservableCollection<BillModel> getAllBill();
 
         public bool payment(ObservableCollection<pdInBill> _listPD, string idUser, double price);
+        
 
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace QLBH.Models
 {
@@ -21,7 +22,7 @@ namespace QLBH.Models
         List<string> getNameAll();
 
         //List<ProductModel> Find(string id, string name);
-        List<ProductModel> GetByAll();
+        ObservableCollection<ProductModel> GetByAll();
 
 
 

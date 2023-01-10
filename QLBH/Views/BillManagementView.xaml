@@ -104,12 +104,15 @@
                   SelectedItem= "{Binding SelectecItems, Mode=OneWayToSource}"  
                   Background="Transparent"
                   Foreground="White"
-                  BorderThickness="0">
+                  BorderThickness="0"
+                  ItemsSource="{Binding Bill}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                        <GridViewColumn Header="Tên Sản Phẩm" Width="auto" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                        <GridViewColumn Header="Giá" Width="auto" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
+                       
+                        <GridViewColumn Header="Ngày hóa đơn" Width="auto" DisplayMemberBinding="{Binding dateBill}"></GridViewColumn>
+                        <GridViewColumn Header="Thành tiền" Width="auto" DisplayMemberBinding="{Binding orderValue}"></GridViewColumn>
+                        <GridViewColumn Header="Khuyến mãi" Width="auto" DisplayMemberBinding="{Binding discount}"></GridViewColumn>
+                        <GridViewColumn Header="Nhân viên thực hiện" Width="auto" DisplayMemberBinding="{Binding nameUser}"></GridViewColumn>
                     </GridView>
 
                 </ListView.View>

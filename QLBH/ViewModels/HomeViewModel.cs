@@ -19,7 +19,7 @@ namespace QLBH.ViewModels
 
         private ViewModelBase _currentChart;
 
-        private string _dateIschoosing;
+        private DateTime _dateIschoosing;
 
 
 
@@ -28,12 +28,13 @@ namespace QLBH.ViewModels
         public string RevOfDay { get { return _revOfDay; } set { _revOfDay = value; OnPropertyChanged(nameof(RevOfDay)); } }
 
         public ViewModelBase CurrentChart { get { return _currentChart; } set { _currentChart = value; OnPropertyChanged(nameof(CurrentChart)); } }
-        public string DateIschoosing { get { return _dateIschoosing; } set { _dateIschoosing = value; OnPropertyChanged(nameof(DateIschoosing)); } }
+        public DateTime DateIschoosing { get { return _dateIschoosing; } set { _dateIschoosing = value; ExecuteShowDayChart(null);  OnPropertyChanged(nameof(DateIschoosing)); } }
 
 
         public ICommand ShowYesterdayChart { get; }
         public ICommand ShowMonthChart { get; }
         public ICommand ShowLastMonthChart { get; }
+        public ICommand ShowDayChart { get; }
 
         public HomeViewModel()
         {
@@ -60,8 +61,9 @@ namespace QLBH.ViewModels
 
             ShowYesterdayChart = new ViewModelCommand(ExecuteShowYesterdayChart);
             ShowMonthChart = new ViewModelCommand(ExecuteShowMonthChartCommand);
-            ShowLastMonthChart = new ViewModelCommand(ExecuteShowLastMonthChart);
-
+            //ShowLastMonthChart = new ViewModelCommand(ExecuteShowLastMonthChart);
+            
+            ShowLastMonthChart = new ViewModelCommand(ExecuteShowDayChart);
             ExecuteShowYesterdayChart(null);
 
         }
@@ -79,6 +81,12 @@ namespace QLBH.ViewModels
         private void ExecuteShowLastMonthChart(object obj)
         {
             CurrentChart = new LastMonthChartViewModel();
+
+        }
+
+        private void ExecuteShowDayChart(object obj)
+        {
+            CurrentChart = new DayChartViewModel(DateIschoosing.ToString("yyyy-MM-dd"));
 
         }
     }

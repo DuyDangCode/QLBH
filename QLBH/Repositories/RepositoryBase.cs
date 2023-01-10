@@ -13,7 +13,7 @@ namespace QLBH.Repositories
         public RepositoryBase()
         {
             
-            _connectionString = @"Data Source=DUYDEPTRAI\THANHDUY;Initial Catalog=QLBH;Integrated Security=True";
+            _connectionString = @"Data Source=VTK080123\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
         }
         protected SqlConnection GetConnection()
         {

@@ -48,7 +48,7 @@ namespace QLBH.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select *from [User] where username=@username and [password]=@password and state = 0";
+                command.CommandText = "select *from [User] where username=@username and [password]=@password and ISDELETE = 0";
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
                 validUser = command.ExecuteScalar() == null ? false : true;
@@ -140,7 +140,7 @@ namespace QLBH.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select *from [User] where username=@username and state = 0";
+                command.CommandText = "select *from [User] where username=@username and ISDELETE = 0";
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = username;
                 using(var reader = command.ExecuteReader())
                 {
@@ -148,12 +148,12 @@ namespace QLBH.Repositories
                     {
                         user = new UserModel()
                         {
-                            Id = reader["ID_USER"].ToString(),
+                            Id = reader["ID"].ToString(),
                             Username = reader["USERNAME"].ToString(),
                             Name = reader["Name"].ToString(),
-                            LastName = String.Empty,
-                            Email = String.Empty,
-                            profileImage = reader["PROFILE_IMAGE"].ToString(),
+                            LastName = reader["LASTNAME"].ToString(),
+                            Email = reader["EMAIL"].ToString(),
+                            profileImage = reader["IMAGE_USER"].ToString(),
                             Role = Convert.ToInt32(reader["ROLE"]),
 
                     };

@@ -8,27 +8,28 @@ using QLBH.Models;
 using QLBH.Views;
 using QLBH.Repositories;
 using System.Windows.Forms;
+using System.Collections.ObjectModel;
 
 namespace QLBH.ViewModels
 {
     public class StorageViewModel : ViewModelBase
     {
-        private List<ProductModel> _produces;
+        private ObservableCollection<ProductModel> _produces;
 
         
 
         private ProductModel _SelectecItems;
         private string _ID_SelectecItems;
         private string _Name_SelectecItems;
-        private string _id;
+        private int _id;
         private string _name;
        
-        public List<ProductModel> Produces { get => _produces; set { _produces = value; OnPropertyChanged(nameof(Produces)); }  }
+        public ObservableCollection<ProductModel> Produces { get => _produces; set { _produces = value; OnPropertyChanged(nameof(Produces)); }  }
         public ProductModel SelectecItems { get => _SelectecItems; set { _SelectecItems = value; OnPropertyChanged(nameof(SelectecItems)); } }
         public string ID_SelectecItems { get => _ID_SelectecItems; set { _ID_SelectecItems = value; OnPropertyChanged(nameof(ID_SelectecItems)); } }
         public string Name_SelectecItems { get => _Name_SelectecItems; set { _Name_SelectecItems = value; OnPropertyChanged(nameof(Name_SelectecItems)); } }
         
-        public string id { get => _id; set { _id = value; OnPropertyChanged(nameof(id));  }  }
+        public int id { get => _id; set { _id = value; OnPropertyChanged(nameof(id));  }  }
         public string name { get => _name; set { _name = value; OnPropertyChanged(nameof(name)); } }
 
         //private ViewModelBase _currentChildView;

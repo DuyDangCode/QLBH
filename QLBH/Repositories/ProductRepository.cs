@@ -8,6 +8,7 @@ using System.Net;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
+using System.Collections.ObjectModel;
 
 namespace QLBH.Repositories
 {
@@ -69,9 +70,9 @@ namespace QLBH.Repositories
             }
         }
 
-        public List<ProductModel> GetByAll() 
+        public ObservableCollection<ProductModel> GetByAll() 
         {
-            List<ProductModel> products = new List<ProductModel>();
+            ObservableCollection<ProductModel> products = new ObservableCollection<ProductModel>();
             
 
             using (var connection = GetConnection())
@@ -80,19 +81,30 @@ namespace QLBH.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select * from [Product] where STATE = 0";
+                command.CommandText = "select * from [Product] join PRODUCT_TYPE ON PRODUCT_TYPE.ID_PRODUCT_TYPE = PRODUCT.ID_PRODUCT_TYPE JOIN dbo.SUPPLY ON SUPPLY.ID_SUPPLY = PRODUCT.ID_SUPPLY where PRODUCT.ISDELETE = 0 order by EXPIRY";
                 adapter.SelectCommand = command;
                 using var SqlReader = command.ExecuteReader() ;
                 if(SqlReader.HasRows)
                 {
+                    int i = 1;
                     while (SqlReader.Read())
                     {
                         ProductModel pd = new ProductModel();
-                        pd.Id = Convert.ToString(SqlReader["ID_PRODUCT"]);
+                        pd.Id = Convert.ToString(SqlReader["ID"]);
                         pd.Name = Convert.ToString(SqlReader["NAME_PRODUCT"]);
                         pd.Price = Convert.ToInt64(SqlReader["PRICE"]);
+                        pd.Import_Price = Convert.ToInt64(SqlReader["IMPORT_PRICE"]);
+                        pd.Number = i;
+                        i++;
+                        pd.Amount = Convert.ToInt32(SqlReader["AMOUNT"]);
+                        pd.ImagePath = Convert.ToString(SqlReader["IMAGE_PRODUCT"]);
+                        pd.Description = Convert.ToString(SqlReader["Description"]);
+                        pd.Import_Date = Convert.ToString(SqlReader["IMPORT_DATE"]);
+                        pd.Expiry = Convert.ToString(SqlReader["EXPIRY"]);
+                        pd.Supply = Convert.ToString(SqlReader["NAME_SUPPLY"]);
 
                         products.Add(pd);
+                        
                     }
 
                 }
@@ -115,7 +127,7 @@ namespace QLBH.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select NAME_PRODUCT from [Product] where STATE = 0";
+                command.CommandText = "select NAME_PRODUCT from [PRODUCT_TYPE] where ISDELETE = 0";
                 adapter.SelectCommand = command;
                 using var SqlReader = command.ExecuteReader();
                 if (SqlReader.HasRows)
@@ -150,7 +162,7 @@ namespace QLBH.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select PRICE from [Product] where STATE = 0 and NAME_PRODUCT = N'"+name+"'";
+                command.CommandText = "select PRICE from [Product] join PRODUCT_TYPE ON PRODUCT_TYPE.ID_PRODUCT_TYPE = PRODUCT.ID_PRODUCT_TYPE where PRODUCT_TYPE.ISDELETE = 0 and NAME_PRODUCT = N'" + name+"'";
 
                 adapter.SelectCommand = command;
                 using var SqlReader = command.ExecuteReader();
@@ -182,7 +194,7 @@ namespace QLBH.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select ID_PRODUCT from [Product] where STATE = 0 and NAME_PRODUCT = N'" + name + "'";
+                command.CommandText = "select ID_PRODUCT_TYPE from [PRODUCT_TYPE] where isdelete = 0 and NAME_PRODUCT = N'" + name + "'";
 
                 adapter.SelectCommand = command;
                 using var SqlReader = command.ExecuteReader();

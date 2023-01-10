@@ -107,6 +107,9 @@ namespace QLBH.ViewModels
             }
 
             ListPD = new ObservableCollection<pdInBill>();
+            BillPrice = 0;
+
+
         }
 
         private bool CanExecuteDelete(object obj)
@@ -135,7 +138,12 @@ namespace QLBH.ViewModels
 
             
             NamePds = pd.getNameAll();
-            Price = pd.GetPriceByName(NamePds[0]);
+            if(NamePds.Count != 0)
+                Price = pd.GetPriceByName(NamePds[0]);
+            else
+            {
+                Price = 0;
+            }
             
             Date = DateTime.Now.ToString();
             getNameCurrentUser();
