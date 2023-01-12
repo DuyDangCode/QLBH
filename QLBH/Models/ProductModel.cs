@@ -16,7 +16,9 @@ namespace QLBH.Models
         public string Import_Date { get; set; }
         public string Expiry { get; set; }
 
-        public int Amount { get; set; }
+        
+
+        public Double Amount { get; set; }
         public string Supply { get; set; }
         public string Description { get; set; }
         

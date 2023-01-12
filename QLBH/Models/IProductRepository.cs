@@ -18,11 +18,12 @@ namespace QLBH.Models
         void Add(ProductModel product);
         void Modify(ProductModel product);
         void Remove(string id);
-
+        void RemovePP(string id);
         List<string> getNameAll();
 
         //List<ProductModel> Find(string id, string name);
-        ObservableCollection<ProductModel> GetByAll();
+        ObservableCollection<ProductModel> GetByAll(string id);
+        ObservableCollection<ProductPortfolio> GetByAllProductPortfolio();
 
 
 

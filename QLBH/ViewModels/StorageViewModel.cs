@@ -14,18 +14,26 @@ namespace QLBH.ViewModels
 {
     public class StorageViewModel : ViewModelBase
     {
-        private ObservableCollection<ProductModel> _produces;
-
         
+        //Produces = p.GetByAll();
+        private ObservableCollection<ProductModel> _produces;
+        private ObservableCollection<ProductPortfolio> _ProductPortfolio;
+
+
+
 
         private ProductModel _SelectecItems;
+        private ProductPortfolio _SelectecPP;
         private string _ID_SelectecItems;
         private string _Name_SelectecItems;
         private int _id;
         private string _name;
        
         public ObservableCollection<ProductModel> Produces { get => _produces; set { _produces = value; OnPropertyChanged(nameof(Produces)); }  }
+        public ObservableCollection<ProductPortfolio> ProductPortfolio { get => _ProductPortfolio; set { _ProductPortfolio = value; OnPropertyChanged(nameof(ProductPortfolio)); } }
         public ProductModel SelectecItems { get => _SelectecItems; set { _SelectecItems = value; OnPropertyChanged(nameof(SelectecItems)); } }
+        public ProductPortfolio SelectecPP { get => _SelectecPP; set { _SelectecPP = value; OnPropertyChanged(nameof(SelectecPP));} }
+
         public string ID_SelectecItems { get => _ID_SelectecItems; set { _ID_SelectecItems = value; OnPropertyChanged(nameof(ID_SelectecItems)); } }
         public string Name_SelectecItems { get => _Name_SelectecItems; set { _Name_SelectecItems = value; OnPropertyChanged(nameof(Name_SelectecItems)); } }
         
@@ -34,10 +42,20 @@ namespace QLBH.ViewModels
 
         //private ViewModelBase _currentChildView;
 
+
+
+        public ICommand LoadData { get; set; }
+
+
         public ICommand AddProducts{get;set;}
-        public ICommand FindProducts{get;set;}
+        //public ICommand FindProducts{get;set;}
         public ICommand RemoveProducts { get;set;}
         public ICommand ModifyProducts { get;set;}
+
+
+        public ICommand AddProductPortfolio { get; set; }
+        public ICommand RemoveProductPortfolio { get; set; }
+        public ICommand ModifyProductPortfolio { get; set; }
 
         //public ViewModelBase CurrentChildView
         //{
@@ -52,6 +70,22 @@ namespace QLBH.ViewModels
         //    }
         //}
 
+
+        private void ExecuteLoadData(object obj)
+        {
+            ProductRepository p = new ProductRepository(); 
+            Produces = p.GetByAll(_SelectecPP.IdPP);
+        }
+
+        private bool CanExecuteLoadData(object obj)
+        {
+            if(SelectecPP == null)
+                return false;
+            return true;
+
+
+        }
+
         private bool CanExecuteAddProducts(object obj)
         {
             return true;
@@ -62,6 +96,37 @@ namespace QLBH.ViewModels
             
             AddProductsView addPD = new AddProductsView();
             addPD.Show();
+            
+        }
+
+        private bool CanExecuteAddProductPortfolio(object obj)
+        {
+            return true;
+        }
+
+        public void ExecuteAddProductPortfolio(object obj)
+        {
+
+            AddProductPortfolioView a = new AddProductPortfolioView();
+            a.Show();
+
+        }
+
+        private bool CanExecuteRemoveProductPortfolio(object obj)
+        {
+            if (SelectecPP == null)
+                return false;
+            return true;
+        }
+
+        public void ExecuteRemoveProductPortfolio(object obj)
+        {
+
+            ProductRepository repository = new ProductRepository();
+            repository.RemovePP(SelectecPP.IdPP);
+            MessageBox.Show("Đã xóa thành công");
+            ProductPortfolio = repository.GetByAllProductPortfolio();
+            Produces = null;
             
         }
 
@@ -77,9 +142,9 @@ namespace QLBH.ViewModels
         {
             ProductRepository repository = new ProductRepository();
             repository.Remove(SelectecItems.Id);
-            
-            Produces = repository.GetByAll();
-            //MessageBox.Show("Đã xóa thành công");
+            MessageBox.Show("Đã xóa thành công");
+            Produces = repository.GetByAll(SelectecItems.Id);
+
         }
 
         private bool CanExecuteModifyProducts(object obj)
@@ -109,12 +174,14 @@ namespace QLBH.ViewModels
         public StorageViewModel()
         {
             ProductRepository p = new ProductRepository();
-            Produces = p.GetByAll();
-
+            
+            ProductPortfolio = p.GetByAllProductPortfolio();
+            LoadData = new ViewModelCommand(ExecuteLoadData, CanExecuteLoadData);
             AddProducts = new ViewModelCommand(ExecuteAddProducts, CanExecuteAddProducts);
+            AddProductPortfolio = new ViewModelCommand(ExecuteAddProductPortfolio, CanExecuteAddProductPortfolio);
             ModifyProducts = new ViewModelCommand(ExecuteModifyProducts, CanExecuteModifyProducts);
             RemoveProducts = new ViewModelCommand(ExecuteRemoveProducts, CanExecuteRemoveProducts);
-            
+            RemoveProductPortfolio = new ViewModelCommand(ExecuteRemoveProductPortfolio, CanExecuteRemoveProductPortfolio);
             
 
         }

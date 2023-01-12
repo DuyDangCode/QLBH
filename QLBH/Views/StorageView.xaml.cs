@@ -36,67 +36,67 @@ namespace QLBH
             
 
             //listProduct.ItemsSource = a.produces;
-            FilterBy.ItemsSource = new string[] { "ID", "Tên sản phẩm", "Giá" };
+            //FilterBy.ItemsSource = new string[] { "ID", "Tên sản phẩm", "Giá" };
 
             
             
         }
 
-        public Predicate<object> GetFilter()
-        {
-            switch(FilterBy.SelectedItem as string)
-            {
-                case "ID":
-                    return IDFilter;
-                case "Tên sản phẩm":
-                    return NameFilter;
+        //public Predicate<object> GetFilter()
+        //{
+        //    switch(FilterBy.SelectedItem as string)
+        //    {
+        //        case "ID":
+        //            return IDFilter;
+        //        case "Tên sản phẩm":
+        //            return NameFilter;
                 
 
-            }
+        //    }
 
-            return NameFilter;
-        }
+        //    return NameFilter;
+        //}
 
-        private bool IDFilter(object obj) 
-        {
-            var Filterobj = obj as ProductModel ;
+        //private bool IDFilter(object obj) 
+        //{
+        //    var Filterobj = obj as ProductPortfolio ;
             
-            return Filterobj.Id.Contains(FilterTextbox.Text,StringComparison.OrdinalIgnoreCase);
-        }
+        //    return Filterobj.Id.Contains(FilterTextbox.Text,StringComparison.OrdinalIgnoreCase);
+        //}
 
 
-        private bool NameFilter(object obj)
-        {
-            var Filterobj = obj as ProductModel;
+        //private bool NameFilter(object obj)
+        //{
+        //    var Filterobj = obj as ProductModel;
 
-            return Filterobj.Name.Contains(FilterTextbox.Text, StringComparison.OrdinalIgnoreCase);
-        }
+        //    return Filterobj.Name.Contains(FilterTextbox.Text, StringComparison.OrdinalIgnoreCase);
+        //}
 
        
 
-        private void FilterTextbox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if(FilterTextbox == null)
-            {
+        //private void FilterTextbox_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    if(FilterTextbox == null)
+        //    {
 
-                listProduct.Items.Filter = null;
-            }
-            else
-            {
-                listProduct.Items.Filter = GetFilter();
+        //        listProduct.Items.Filter = null;
+        //    }
+        //    else
+        //    {
+        //        listProduct.Items.Filter = GetFilter();
 
-            }
+        //    }
 
-        }
-
-
-        private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            listProduct.Items.Filter = GetFilter();
-
-        }
+        //}
 
 
+        //private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+
+        //    listProduct.Items.Filter = GetFilter();
+
+        //}
+
+        
     }
 }

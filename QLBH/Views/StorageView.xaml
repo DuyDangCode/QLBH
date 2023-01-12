@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QLBH"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:viewModel="clr-namespace:QLBH.ViewModels" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -21,9 +22,10 @@
             <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <!--Find Bar-->
-        <Grid Grid.Row="0">
+        <!--<Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="65"></RowDefinition>
             </Grid.RowDefinitions>
@@ -34,16 +36,18 @@
             </Grid>
 
 
-        </Grid>
+        </Grid>-->
 
         <!--Insert Button-->
+
+
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="131*"/>
                 <ColumnDefinition Width="52*"/>
                 <ColumnDefinition Width="617*"/>
             </Grid.ColumnDefinitions>
-            
+
             <!--<Button Style="{StaticResource functionButton}"
                     Margin="134,0,0,0" Grid.Column="2"
                     Command="{Binding AddProducts}">
@@ -64,6 +68,7 @@
                 <TextBlock Style="{StaticResource functionButtonText}">Sửa</TextBlock>
 
             </Button>-->
+            <Button Width="auto" Margin="0,0,20,0" Command="{Binding LoadData}" Content="Hiển thị dữ liệu"></Button>
 
 
 
@@ -73,25 +78,31 @@
 
 
         <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+                
+            </Grid.ColumnDefinitions>
             <!--Danh sách sản phẩm-->
-            <ListView x:Name="listProduct"
-                  Margin="2,20,2,0"
-                  SelectedItem= "{Binding SelectecItems, Mode=OneWayToSource}"  
+            <ListView
                   
-                  ItemsSource="{Binding Produces}"
+                  Margin="2,20,2,0"
+                  SelectedItem= "{Binding SelectecPP, Mode=OneWayToSource}"  
+                  Grid.Column="0"
+                  ItemsSource="{Binding ProductPortfolio}"
                   Background="Transparent"
                   Foreground="White"
-                  
+                  HorizontalContentAlignment="Stretch"
                   BorderThickness="0">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Stt" Width="auto" DisplayMemberBinding="{Binding Stt}"></GridViewColumn>
-                        <GridViewColumn Header="Tên Sản Phẩm" Width="auto" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                        <GridViewColumn Header="Giá" Width="auto" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
-                        <GridViewColumn Header="Giá nhập" Width="auto" DisplayMemberBinding="{Binding Import_Price}"></GridViewColumn>
-                        <GridViewColumn Header="Ngày nhập" Width="auto" DisplayMemberBinding="{Binding Import_Date}"></GridViewColumn>
-                        <GridViewColumn Header="Ngày hết hạn" Width="auto" DisplayMemberBinding="{Binding Expiry}"></GridViewColumn>
-                        <GridViewColumn Width="50">
+                        <GridViewColumn Header="Stt" Width="50" DisplayMemberBinding="{Binding Number}"></GridViewColumn>
+                        <GridViewColumn Header="Sản Phẩm" Width="150" DisplayMemberBinding="{Binding NamePP}"></GridViewColumn>
+                        <GridViewColumn Header="Đơn vị" Width="50" DisplayMemberBinding="{Binding Unit}"></GridViewColumn>
+
+
+                        <!--<GridViewColumn Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -132,15 +143,125 @@
                                     </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                        </GridViewColumn>-->
                     </GridView>
-                    
+
                 </ListView.View>
                 <!--<ListView.Template>
                     
                 </ListView.Template>-->
 
             </ListView>
+
+
+
+
+
+            <ListView 
+                  Margin="2,20,2,0"
+                  SelectedItem= "{Binding SelectecItems, Mode=OneWayToSource}"  
+                  Grid.Column="1"
+                  ItemsSource="{Binding Produces}"
+                  Background="Transparent"
+                  Foreground="White"
+                  HorizontalContentAlignment="Stretch"
+                  BorderThickness="0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Stt" Width="50" DisplayMemberBinding="{Binding Number}"></GridViewColumn>
+                        <GridViewColumn Header="Ngày hết hạn" Width="150" DisplayMemberBinding="{Binding Expiry}"></GridViewColumn>
+                        <GridViewColumn Header="Ngày nhập" Width="150" DisplayMemberBinding="{Binding Import_Date}"></GridViewColumn>
+                        <GridViewColumn Header="Số lượng" Width="50" DisplayMemberBinding="{Binding Amount}"></GridViewColumn>
+                        <GridViewColumn Header="Giá nhập" Width="100" DisplayMemberBinding="{Binding Import_Price}"></GridViewColumn>
+                        <GridViewColumn Header="Giá bán" Width="100" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
+                        <GridViewColumn Header="Ghi chú" Width="150" DisplayMemberBinding="{Binding Description}"></GridViewColumn>
+                        <GridViewColumn Header="Đường dẫn ảnh" Width="150" DisplayMemberBinding="{Binding ImagePath}"></GridViewColumn>
+
+
+                        <!--<GridViewColumn Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Button Foreground="White"
+                                            Background="Pink"
+                                            Command="{Binding ElementName=listProduct, Path=DataContext.AddProducts}"
+                                            Content="Sửa">
+                                        </Button>
+                                    </Grid>
+                                    
+                                  
+                                    
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        
+                        <GridViewColumn Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    
+                                    <Button Foreground="White"
+                                            Background="Pink"
+                                            Command="{Binding ElementName=listProduct, Path=DataContext.ModifyProducts}"
+                                            Content="Sửa">
+                                    </Button>
+                                    
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    
+                                    <Button Foreground="White"
+                                            Background="Pink"
+                                            Command="{Binding ElementName=listProduct, Path=DataContext.RemoveProducts}"
+                                            Content="xóa">
+                                    </Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>-->
+                    </GridView>
+
+                </ListView.View>
+                <!--<ListView.Template>
+                    
+                </ListView.Template>-->
+
+            </ListView>
+
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button Height="auto" Width="30" Margin="0,0,20,0" Command="{Binding AddProducts}">
+                    <fa:IconImage Icon="Plus"/>
+                </Button>
+                <Button Height="auto" Width="30" Margin="0,0,20,0" Command="{Binding RemoveProducts}">
+                    <fa:IconImage Icon="Minus"/>
+                </Button>
+                <Button Height="auto" Width="30" Margin="0,0,20,0" Command="{Binding ModifyProducts}">
+                    <fa:IconImage Icon="Pen"/>
+                </Button>
+
+            </StackPanel>
+            
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Button Height="auto" Width="30" Margin="0,0,20,0" Command="{Binding AddProductPortfolio}">
+                    <fa:IconImage Icon="Plus"/>
+                </Button>
+                <Button Height="auto" Width="30" Margin="0,0,20,0" Command="{Binding RemoveProductPortfolio}" >
+                    <fa:IconImage Icon="Minus"/>
+                </Button>
+                <Button Height="auto" Width="30" Margin="0,0,20,0" Command="{Binding ModifyProductPortfolio}" >
+                    <fa:IconImage Icon="Pen"/>
+                </Button>
+            </StackPanel>
+
         </Grid>
 
     </Grid>

@@ -63,14 +63,28 @@ namespace QLBH.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "UPDATE dbo.PRODUCT SET  STATE = 1 WHERE ID_PRODUCT = '" + id + "'";
+                command.CommandText = "UPDATE dbo.PRODUCT SET  isdelete = 1 WHERE ID_PRODUCT = '" + id + "'";
                 //MessageBox.Show("INSERT INTO dbo.PRODUCT ( ID_PRODUCT, NAME_PRODUCT, PRICE, EXPIRY, IMPORT_DATE, INITIAL_AMOUNT,C URRENT_AMOUNT, DESCRIPTION,IMAGE_PART) VALUES (   NEWID(), N'" + pd.Name + "', " + pd.Price + ", '2022-10-26 07:29:14', '2022-10-26 07:29:14', 0, 0, N'', N'')");
                 command.ExecuteNonQuery();
 
             }
         }
 
-        public ObservableCollection<ProductModel> GetByAll() 
+        public void RemovePP(string id)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "UPDATE dbo.PRODUCT_TYPE SET  isdelete = 1 WHERE ID_PRODUCT_TYPE = '" + id + "'";
+                command.ExecuteNonQuery();
+
+            }
+        }
+
+
+        public ObservableCollection<ProductModel> GetByAll(string id) 
         {
             ObservableCollection<ProductModel> products = new ObservableCollection<ProductModel>();
             
@@ -81,7 +95,7 @@ namespace QLBH.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select * from [Product] join PRODUCT_TYPE ON PRODUCT_TYPE.ID_PRODUCT_TYPE = PRODUCT.ID_PRODUCT_TYPE JOIN dbo.SUPPLY ON SUPPLY.ID_SUPPLY = PRODUCT.ID_SUPPLY where PRODUCT.ISDELETE = 0 order by EXPIRY";
+                command.CommandText = "select * from [Product] join PRODUCT_TYPE ON PRODUCT_TYPE.ID_PRODUCT_TYPE = PRODUCT.ID_PRODUCT_TYPE JOIN dbo.SUPPLY ON SUPPLY.ID_SUPPLY = PRODUCT.ID_SUPPLY where PRODUCT.ISDELETE = 0 and PRODUCT_TYPE.ID_PRODUCT_TYPE = '" + id+"' order by EXPIRY";
                 adapter.SelectCommand = command;
                 using var SqlReader = command.ExecuteReader() ;
                 if(SqlReader.HasRows)
@@ -90,13 +104,15 @@ namespace QLBH.Repositories
                     while (SqlReader.Read())
                     {
                         ProductModel pd = new ProductModel();
-                        pd.Id = Convert.ToString(SqlReader["ID"]);
+                        pd.Id = Convert.ToString(SqlReader["ID_PRODUCT"]);
+
                         pd.Name = Convert.ToString(SqlReader["NAME_PRODUCT"]);
                         pd.Price = Convert.ToInt64(SqlReader["PRICE"]);
                         pd.Import_Price = Convert.ToInt64(SqlReader["IMPORT_PRICE"]);
                         pd.Number = i;
                         i++;
-                        pd.Amount = Convert.ToInt32(SqlReader["AMOUNT"]);
+                        
+                        pd.Amount = Convert.ToDouble(SqlReader["AMOUNT"]);
                         pd.ImagePath = Convert.ToString(SqlReader["IMAGE_PRODUCT"]);
                         pd.Description = Convert.ToString(SqlReader["Description"]);
                         pd.Import_Date = Convert.ToString(SqlReader["IMPORT_DATE"]);
@@ -105,6 +121,49 @@ namespace QLBH.Repositories
 
                         products.Add(pd);
                         
+                    }
+
+                }
+                else
+                {
+
+
+                }
+            }
+
+            return products;
+        }
+
+        
+
+
+        public ObservableCollection<ProductPortfolio> GetByAllProductPortfolio()
+        {
+            ObservableCollection<ProductPortfolio> products = new ObservableCollection<ProductPortfolio>();
+
+
+            using (var connection = GetConnection())
+            using (SqlDataAdapter adapter = new SqlDataAdapter())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT * FROM dbo.PRODUCT_TYPE WHERE ISDELETE = 0";
+                adapter.SelectCommand = command;
+                using var SqlReader = command.ExecuteReader();
+                if (SqlReader.HasRows)
+                {
+                    int i = 0;
+                    while (SqlReader.Read())
+                    {
+                        ProductPortfolio pd = new ProductPortfolio();
+                        pd.Number = i;
+                        i++;
+                        pd.IdPP = Convert.ToString(SqlReader["ID_PRODUCT_TYPE"]);
+                        pd.NamePP = Convert.ToString(SqlReader["NAME_PRODUCT"]);
+                        pd.Unit = Convert.ToString(SqlReader["UNIT"]);
+                        products.Add(pd);
+
                     }
 
                 }
