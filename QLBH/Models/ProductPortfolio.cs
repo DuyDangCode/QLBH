@@ -12,6 +12,10 @@ namespace QLBH.Models
         public string IdPP { get; set; }
         public string NamePP { get; set; }
         public string Unit { get; set; }
+
+        public string Amount { get; set; }
+
+        public string ImageLink { get; set; }
         //public int IsDeletePP { get; set; }
     }
 }

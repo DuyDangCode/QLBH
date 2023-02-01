@@ -20,6 +20,8 @@ namespace QLBH.Models
         void Remove(string id);
         void RemovePP(string id);
         List<string> getNameAll();
+        bool AddPortfolio(ProductPortfolio pdp);
+        bool ModifyPortfolio(ProductPortfolio pdp);
 
         //List<ProductModel> Find(string id, string name);
         ObservableCollection<ProductModel> GetByAll(string id);

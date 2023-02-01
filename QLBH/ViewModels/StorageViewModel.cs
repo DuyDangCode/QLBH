@@ -45,7 +45,7 @@ namespace QLBH.ViewModels
 
 
         public ICommand LoadData { get; set; }
-
+        public ICommand ReLoad { get; set; }
 
         public ICommand AddProducts{get;set;}
         //public ICommand FindProducts{get;set;}
@@ -70,7 +70,11 @@ namespace QLBH.ViewModels
         //    }
         //}
 
-
+        private void ExecuteReLoad(object obj)
+        {
+            ProductRepository p = new ProductRepository();
+            ProductPortfolio = p.GetByAllProductPortfolio();
+        }
         private void ExecuteLoadData(object obj)
         {
             ProductRepository p = new ProductRepository(); 
@@ -109,6 +113,22 @@ namespace QLBH.ViewModels
 
             AddProductPortfolioView a = new AddProductPortfolioView();
             a.Show();
+
+        }
+
+        private bool CanExecuteModifyProductPortfolio(object obj)
+        {
+            if(SelectecPP!= null)
+                return true;
+            return false;
+        }
+
+        public void ExecuteModifyProductPortfolio(object obj)
+        {
+
+            ModifyProductPortfolioView a = new ModifyProductPortfolioView(SelectecPP);
+            a.Show();
+            
 
         }
 
@@ -174,15 +194,16 @@ namespace QLBH.ViewModels
         public StorageViewModel()
         {
             ProductRepository p = new ProductRepository();
-            
             ProductPortfolio = p.GetByAllProductPortfolio();
+
             LoadData = new ViewModelCommand(ExecuteLoadData, CanExecuteLoadData);
             AddProducts = new ViewModelCommand(ExecuteAddProducts, CanExecuteAddProducts);
             AddProductPortfolio = new ViewModelCommand(ExecuteAddProductPortfolio, CanExecuteAddProductPortfolio);
             ModifyProducts = new ViewModelCommand(ExecuteModifyProducts, CanExecuteModifyProducts);
             RemoveProducts = new ViewModelCommand(ExecuteRemoveProducts, CanExecuteRemoveProducts);
             RemoveProductPortfolio = new ViewModelCommand(ExecuteRemoveProductPortfolio, CanExecuteRemoveProductPortfolio);
-            
+            ReLoad = new ViewModelCommand(ExecuteReLoad);
+            ModifyProductPortfolio = new ViewModelCommand(ExecuteModifyProductPortfolio, CanExecuteModifyProductPortfolio);
 
         }
 

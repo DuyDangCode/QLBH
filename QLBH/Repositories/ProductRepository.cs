@@ -148,7 +148,7 @@ namespace QLBH.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT * FROM dbo.PRODUCT_TYPE WHERE ISDELETE = 0";
+                command.CommandText = "SELECT * FROM (SELECT * FROM dbo.PRODUCT_TYPE WHERE ISDELETE = 0) A LEFT JOIN (SELECT PDT.ID_PRODUCT_TYPE, COUNT(dbo.PRODUCT.ID_PRODUCT) AS MOUNT FROM (SELECT * FROM dbo.PRODUCT_TYPE WHERE ISDELETE = 0) PDT JOIN dbo.PRODUCT ON PRODUCT.ID_PRODUCT_TYPE = PDT.ID_PRODUCT_TYPE GROUP BY PDT.ID_PRODUCT_TYPE) B ON B.ID_PRODUCT_TYPE = A.ID_PRODUCT_TYPE ";
                 adapter.SelectCommand = command;
                 using var SqlReader = command.ExecuteReader();
                 if (SqlReader.HasRows)
@@ -162,6 +162,11 @@ namespace QLBH.Repositories
                         pd.IdPP = Convert.ToString(SqlReader["ID_PRODUCT_TYPE"]);
                         pd.NamePP = Convert.ToString(SqlReader["NAME_PRODUCT"]);
                         pd.Unit = Convert.ToString(SqlReader["UNIT"]);
+                        pd.ImageLink = Convert.ToString(SqlReader["IMAGE_PRODUCT"]);
+                        if(SqlReader["MOUNT"] == null)
+                            pd.Amount = "0";
+                        else
+                            pd.Amount = Convert.ToString(SqlReader["MOUNT"]);
                         products.Add(pd);
 
                     }
@@ -274,6 +279,39 @@ namespace QLBH.Repositories
             return id;
 
 
+        }
+
+        public bool AddPortfolio(ProductPortfolio pdp)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "INSERT INTO dbo.PRODUCT_TYPE VALUES (NEWID(), N'" + pdp.NamePP + "',0, N'"+pdp.Unit+"', '"+pdp.ImageLink+"')";
+                command.ExecuteNonQuery();
+                return true;
+            }
+
+
+            return false;
+        }
+
+        public bool ModifyPortfolio(ProductPortfolio pdp)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "UPDATE PRODUCT_TYPE SET NAME_PRODUCT = N'"+pdp.NamePP+"' , UNIT = N'"+pdp.Unit+ "' , IMAGE_PRODUCT = '"+pdp.ImageLink+ "' WHERE ID_PRODUCT_TYPE = '"+pdp.IdPP+"'";
+                
+                command.ExecuteNonQuery();
+                return true;
+            }
+
+
+            return false;
         }
     }
 

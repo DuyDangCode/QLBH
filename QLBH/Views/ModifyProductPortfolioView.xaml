@@ -1,20 +1,18 @@
-﻿<Window x:Class="QLBH.Views.AddProductPortfolioView"
+﻿<Window x:Class="QLBH.Views.ModifyProductPortfolioView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLBH.Views"
-        xmlns:viewModel="clr-namespace:QLBH.ViewModels"
         mc:Ignorable="d"
+        xmlns:viewModel="clr-namespace:QLBH.ViewModels"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown"
-        Title="Thêm danh mục sản phẩm" Height="300" Width="500">
-
-    <Window.DataContext>
-        <viewModel:AddProductPortfolioViewModel/>
-    </Window.DataContext>
+        
+        
+        Title="Chỉnh sửa danh mục sản phẩm" Height="300" Width="500">
 
     <Border CornerRadius="12">
         <Border.Background>
@@ -40,6 +38,8 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
@@ -56,7 +56,7 @@
                            Margin="10,0,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"/>
-                    <TextBlock Text="Thêm danh mục sản phẩm"
+                    <TextBlock Text="Sửa danh mục sản phẩm"
                            Foreground="{StaticResource titleColor1}"
                            FontSize="15"
                            Grid.Column="0"
@@ -131,43 +131,32 @@
 
 
                 </Grid>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="131*"/>
-                        <ColumnDefinition Width="367*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <StackPanel Margin="5,0,0,0" Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Width="90" FontWeight="Bold" Foreground="White" >Tên sản phẩm:</TextBlock>
-                            <TextBox Foreground="White" Background="Transparent" BorderThickness="0,0,0,1" Width="200" Text="{Binding Name}"></TextBox>
-                        </StackPanel>
-                        <StackPanel Margin="25,0,0,0" Orientation="Horizontal">
-                            <TextBlock Width="90" FontWeight="Bold" Foreground="White" >Đơn vị:</TextBlock>
-                            <ComboBox Width="80" SelectedIndex="0" ItemsSource="{Binding Unit}" SelectedItem="{Binding SelectedU, Mode=TwoWay}"></ComboBox>
-                        </StackPanel>
-
+                <StackPanel Margin="5,0,0,0" Grid.Row="1" Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="90" FontWeight="Bold" Foreground="White" >Tên sản phẩm:</TextBlock>
+                        <TextBox x:Name="name"  Foreground="White" Background="Transparent" BorderThickness="0,0,0,1" Width="200"></TextBox>
+                    </StackPanel>
+                    <StackPanel Margin="25,0,0,0" Orientation="Horizontal">
+                        <TextBlock Width="50" FontWeight="Bold" Foreground="White">Đơn vị:</TextBlock>
+                        <ComboBox x:Name="unit" Width="80" SelectedIndex="0" ></ComboBox>
                     </StackPanel>
 
+                </StackPanel>
 
-                    <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="2">
-                        <TextBlock Width="90" FontWeight="Bold" Foreground="White" >Hình ảnh:</TextBlock>
-                        <TextBox  Margin="10,0,5,0" Background="Transparent" BorderThickness="0,0,0,1"  Foreground="White" Width="250" Height="20" Text="{Binding SelectPath}"></TextBox>
-                        <Button Height="20" Margin="10,0,0,0" Width="20" Command="{Binding selectFileImg}">...</Button>
-                    </StackPanel>
-                    <StackPanel Margin="20,0,0,0" Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="2">
-                        <Image Width="200" Height="200" Source="{Binding Path}"></Image>
-                        <Button Style="{StaticResource functionButton}" Margin="100,0,0,0" Height="30" Width="100" Command="{Binding Add}">
-                            <TextBlock Foreground="White" FontWeight="Medium">Thêm sản phẩm</TextBlock>
-                        </Button>
-                    </StackPanel>
 
-                </Grid>
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold" Foreground="White">Hình ảnh:</TextBlock>
+                    <TextBox x:Name="path" Margin="10,0,5,0" Background="Transparent" BorderThickness="0,0,0,1"  Foreground="White" Width="250" Height="20" TextChanged="path_TextChanged"></TextBox>
+                    <Button x:Name="chooseImage" Height="20" Margin="10,0,0,0" Width="20">...</Button>
+                </StackPanel>
+                <StackPanel Margin="20,0,0,0" Grid.Row="3" Orientation="Horizontal">
+                    <Image x:Name="image" Width="200" Height="200"></Image>
+                    <Button x:Name="modify" Style="{StaticResource functionButton}" Margin="100,0,0,0" Height="30" Width="100">
+                        <TextBlock Foreground="White" FontWeight="Medium">Sửa sản phẩm</TextBlock></Button>
+                </StackPanel>
+
             </Grid>
         </Border>
     </Border>
+
 </Window>

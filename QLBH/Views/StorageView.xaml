@@ -43,9 +43,9 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="131*"/>
-                <ColumnDefinition Width="52*"/>
-                <ColumnDefinition Width="617*"/>
+                <ColumnDefinition Width="131"/>
+                <ColumnDefinition Width="131"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <!--<Button Style="{StaticResource functionButton}"
@@ -68,7 +68,8 @@
                 <TextBlock Style="{StaticResource functionButtonText}">Sửa</TextBlock>
 
             </Button>-->
-            <Button Width="auto" Margin="0,0,20,0" Command="{Binding LoadData}" Content="Hiển thị dữ liệu"></Button>
+            <Button Grid.Column="0" Width="auto" Margin="0,0,20,0" Command="{Binding LoadData}" Content="Hiển thị dữ liệu"></Button>
+            <Button Grid.Column="1" Width="auto" Margin="0,0,20,0" Command="{Binding ReLoad}" Content="Chạy lại trang"></Button>
 
 
 
@@ -100,7 +101,7 @@
                         <GridViewColumn Header="Stt" Width="50" DisplayMemberBinding="{Binding Number}"></GridViewColumn>
                         <GridViewColumn Header="Sản Phẩm" Width="150" DisplayMemberBinding="{Binding NamePP}"></GridViewColumn>
                         <GridViewColumn Header="Đơn vị" Width="50" DisplayMemberBinding="{Binding Unit}"></GridViewColumn>
-
+                        <GridViewColumn Header="Số lượng" Width="50" DisplayMemberBinding="{Binding Amount}"></GridViewColumn>
 
                         <!--<GridViewColumn Width="50">
                             <GridViewColumn.CellTemplate>
