@@ -89,9 +89,7 @@ namespace QLBH.Views
 
             SelectImage = new ViewModelCommand(ExecuteSelectImage);
             chooseImage.Command= SelectImage;
-
-        }
-
+            
         public ImageSource GetGlowingImage(string _path)
         {
       
